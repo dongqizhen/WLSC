@@ -9,24 +9,26 @@ class Header extends React.Component {
 
     render() {
         return (
-            <div className="header">
-                <div className="head">
-                    <div>
-                        <ul className="clearfix">
-                            <li>登陆/我的商城</li>
-                            <li>购物车</li>
-                            <li>商家中心</li>
-                            <li className="last">网来商城App</li>
-                        </ul>
-                    </div>
-                    
+        <div className = "header">
+            <div className = "head">
+                <div>
+                    <ul className = "clearfix">
+                        <li> 登陆/我的商城 </li> 
+                        <li> 购物车 </li> 
+                        <li> 商家中心 </li> 
+                        <li className = "last"> 网来商城App </li> 
+                    </ul> 
                 </div>
-                
-                <div className="search clearfix">
-                    <div className="logo"></div>
-                    <div className="searchContainer"></div>
-                </div>   
             </div>
+
+            <div className = "search clearfix">
+                <div className = "logo">
+                <a href = "#">
+                <img src = "../../assets/images/logo.png" />
+                </a> </div> 
+                <div className = "searchContainer"> </div> 
+            </div> 
+        </div>
 
         );
     }
