@@ -1,0 +1,38 @@
+
+.header{
+   .head{
+        height: 40px;
+        background: #F2F2F2;
+        >div{
+            width: 1200px;
+            margin: 0 auto;
+           ul{
+                float: right;
+                li{
+                    font-size: 14px;
+                    color: #AAAAAA;
+                    float: left;
+                    margin-right: 30px;
+                    line-height: 40px;
+                    cursor: pointer;
+                    &.last{
+                        margin-right: 0;
+                    }
+                    &:hover{
+                        color: #019DDD;
+                    }
+                }
+            } 
+        } 
+        
+           
+    }
+    .search{
+        height: 156px;
+        width: 1200px;
+        margin: 0 auto;
+        background:#fff;
+        padding-top: 29px;
+    } 
+}
+
