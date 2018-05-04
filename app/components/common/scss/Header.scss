@@ -1,4 +1,5 @@
-
+@import '../../../assets/scss/_commomScss';
+@include inputColor( #B2B2B2);
 .header{
    .head{
         height: 40px;
@@ -33,6 +34,61 @@
         margin: 0 auto;
         background:#fff;
         padding-top: 29px;
+        .logo{
+            float: left;
+            margin-right: 76px;
+            a{
+                img{
+                    display: block;
+                    height: 80px;
+                    width: 215px;
+                }
+            }
+        }
+        .searchContainer{
+            float: left;
+           .seach_btn{
+                height: 75px;
+                padding-top: 17px;
+                input{
+                    float: left;
+                    height: 46px;
+                    width: 561px;
+                    line-height: 46px;
+                    border: 2px solid #019DDD;
+                    border-right: 0;
+                    font-size: 14px;
+                   
+                    padding-left: 36px;
+                }
+                span{
+                    float: left;
+                    height: 46px;
+                    width: 152px;
+                    background: #019DDD;
+                    font-size: 18px;
+                    color: #FFFFFF;
+                    line-height: 46px;
+                    text-align: center;
+                    cursor: pointer;
+                }
+            } 
+            >ul{
+                li{
+                    float: left;
+                    font-size: 14px;
+                    color: #999999;
+                    line-height: 14px;
+                    padding:0 16px;
+                    border-right: #D8D8D8 1px solid;
+                    &:hover{
+                        color: #019DDD;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+        
     } 
 }
 

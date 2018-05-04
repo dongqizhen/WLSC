@@ -1,0 +1,79 @@
+.Banner{
+    height: 605px;
+    a{
+        text-decoration: none;
+    }
+    .common{
+        width: 1200px;
+        margin: 0 auto;
+        .bannerHeader{
+            height: 60px;
+            position: relative;
+            >span{
+                float: left;
+                width: 240px;
+                line-height: 60px;
+                text-align: center;
+                background: #019DDD;
+                font-size: 18px;
+                color: #FFFFFF;
+            }
+            >.bannerNav{
+                position: absolute;
+                left: 0;
+                width: 240px;
+                height: 545px;
+                background: rgba(51,51,51,0.83);
+                z-index: 1000;
+                top: 60px;
+                cursor: pointer;
+                li{
+                    height: 136px;
+                    font-size: 15px;
+                    color: #FFFFFF;
+                    padding: 23px 18px;
+                }
+            }
+            >.nav{
+                width: 1200px - 240px;
+                float: left;
+                height: 60px;
+                border-bottom: 2px solid #019DDD;
+                padding: 0 10px;
+                li{
+                    float: left;
+                    height: 100%;
+                    line-height: 60px;
+                    a{
+                      font-family: "Microsoft YaHei",SimSun,'\5b8b\4f53',sans-serif;
+                        display: inline-block;
+                        height: 100%;
+                        padding: 0 30px;
+                        font-size: 18px;
+                        color: #666666;
+                        font-weight: 500;
+                        &:hover{
+                            color: #019DDD;
+                        }
+                    }
+                }
+            }
+        }
+        .bannerContainer{
+            height: 545px;
+            width: 100%;
+            cursor: pointer;
+            .swiper-wrapper{
+                width: 100%;
+                height: 100%;
+                .swiper-slide{
+                    img{
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+            }
+        }
+    }
+    
+}
