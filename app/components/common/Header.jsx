@@ -16,17 +16,33 @@ class Header extends React.Component {
                         <li> 登陆/我的商城 </li> 
                         <li> 购物车 </li> 
                         <li> 商家中心 </li> 
-                        <li className = "last"> 网来商城App </li> 
+                        <li className = "last"> 网来商城App </li>
                     </ul> 
                 </div>
             </div>
 
             <div className = "search clearfix">
                 <div className = "logo">
-                <a href = "#">
-                <img src = "../../assets/images/logo.png" />
-                </a> </div> 
-                <div className = "searchContainer"> </div> 
+                    <a href = "#">
+                        <img src = "../../assets/images/logo.png" />
+                    </a> 
+                </div> 
+                <div className = "searchContainer">
+                    <div className="seach_btn">
+                        <input type="text" placeholder="请输入搜索内容，如飞利浦血压仪等" />
+                        <span>搜索</span>
+                    </div>
+                    <ul className="clearfix">
+                        <li>血压仪</li>   
+                        <li>血压仪</li>   
+                        <li>血压仪</li>   
+                        <li>血压仪</li>   
+                        <li>血压仪</li>   
+                        <li>血压仪</li>   
+                        <li>血压仪</li>   
+                        <li>血压仪</li>   
+                    </ul>
+                </div>
             </div> 
         </div>
 
