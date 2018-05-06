@@ -37,7 +37,28 @@ class Banner extends React.Component {
                             <h2>配件</h2>
                             <div>
                                 <span>常用配件</span>
+                                <span>超声配件</span>
+                                <br />
+                                <span>电子配件</span>
+                                <span>手术配件</span>
+                            </div>
+                        </li>
+                        <li>
+                            <h2>配件</h2>
+                            <div>
+                                <span>常用仪器</span>
+                                <span>妇婴类</span>
+                                <br />
+                                <span>手术类</span>
+                                <span>护理类</span>
+                            </div>
+                        </li>
+                        <li>
+                            <h2>配件</h2>
+                            <div>
                                 <span>常用配件</span>
+                                <span>常用配件</span>
+                                <br />
                                 <span>常用配件</span>
                                 <span>常用配件</span>
                             </div>
@@ -47,24 +68,7 @@ class Banner extends React.Component {
                             <div>
                                 <span>常用配件</span>
                                 <span>常用配件</span>
-                                <span>常用配件</span>
-                                <span>常用配件</span>
-                            </div>
-                        </li>
-                        <li>
-                            <h2>配件</h2>
-                            <div>
-                                <span>常用配件</span>
-                                <span>常用配件</span>
-                                <span>常用配件</span>
-                                <span>常用配件</span>
-                            </div>
-                        </li>
-                        <li>
-                            <h2>配件</h2>
-                            <div>
-                                <span>常用配件</span>
-                                <span>常用配件</span>
+                                <br />
                                 <span>常用配件</span>
                                 <span>常用配件</span>
                             </div>

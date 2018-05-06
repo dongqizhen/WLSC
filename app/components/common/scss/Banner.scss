@@ -32,6 +32,29 @@
                     font-size: 15px;
                     color: #FFFFFF;
                     padding: 23px 18px;
+                    h2{
+                        height:25px;
+                        padding-left: 24px;
+                        font-size: 18px;
+                        color: #FFFFFF;
+                        margin-bottom: 12px;
+                    }
+                    >div{
+                        span{
+                            display: inline-block;
+                            font-size: 15px;
+                            color: #FFFFFF;
+                            margin-right: 20px;
+                            margin-bottom: 10px;
+                        }
+                    }
+                    &:hover{
+                        background: rgba(255,255,255,0.83);
+                        h2,>div>span{
+                            color: #019DDD;
+                        }
+                        
+                    }
                 }
             }
             >.nav{
