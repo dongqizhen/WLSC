@@ -2,7 +2,7 @@
  * @Author: mikey.dongqizhen
  * @Date: 2018-04-17 16:43:52
  * @Last Modified by: mikey.dongqizhen
- * @Last Modified time: 2018-05-03 17:19:27
+ * @Last Modified time: 2018-05-06 14:46:58
  */
 const webpack = require("webpack");
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -109,7 +109,7 @@ module.exports = {
                         loader: 'url-loader',
                         options: { // 这里的options选项参数可以定义多大的图片转换为base64
                             limit: 5000, // 表示小于50kb的图片转为base64,大于50kb的是路径
-                            outputPath: 'images' //图片打包出去的目录
+                            outputPath: './assets/images' //图片打包出去的目录
                         }
                     }
                 ]
