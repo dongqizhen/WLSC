@@ -1,7 +1,9 @@
 import React from 'react';
 import './scss/Banner.scss';
 import Swiper from 'swiper';
-
+import indexActions from '../../actions/indexActions.jsx';
+import indexStores from '../../stores/indexStores.jsx';
+import dispatchs from '../../dispatchs/Dispatch.jsx'
 
 class BannerHideContainer extends React.Component{
     constructor(){
@@ -60,10 +62,10 @@ class Banner extends React.Component {
   constructor() {
     super();
     this.state = {
-        BannerHideBoxIsShow:false,
+        stores:indexStores.getAllStore(),
         json:{
             "配件":["常用配件","超声配件","电子配件","手术配件"],
-            "整机":["常用配件","超声配件","电子配件","手术配件"],
+            "整机":["超声配件","超声配件","超声配件","手术配件"],
             "耗材":["常用配件","超声配件","电子配件","手术配件"],
             "租赁":["常用配件","超声配件","电子配件","手术配件"],
         }
@@ -72,7 +74,7 @@ class Banner extends React.Component {
 
 
   componentDidMount() {
-    var mySwiper = new Swiper('.swiper-container', {
+        this.mySwiper = new Swiper('.swiper-container', {
         autoplay: {
             delay:3000,
             disableOnInteraction: false
@@ -82,21 +84,39 @@ class Banner extends React.Component {
         loop:true,
         
     })
+
+    indexStores.addChangeListener(this._onChange.bind(this));
   }
 
   componentWillUnmount(){
-
+    //indexStores.removeChangeListener(this._onChange.bind(this));
+    this.mySwiper.destroy()
   }
 
-  mouseEnterEvent(e){
-    console.log(e.currentTarget)
+  mouseEnterEvent(n){
+    dispatchs.dispatch({
+        actionType:indexActions.BANNER_MOUSE_ENTER,
+        currentIndex:n
+    })
+  }
+
+  mouseLeaveEvent (){
+    dispatchs.dispatch({
+        actionType:indexActions.BANNER_MOUSE_LEAVE
+    })
+  }
+
+  _onChange(){
+      this.setState({
+          stores:indexStores.getAllStore()
+      })
   }
 
   render() {
     let elementArr=[] , n=0;
     for(let key in this.state.json){
         let str = (
-            <li className={`listItem-${n++}`} key={key} onMouseEnter={this.mouseEnterEvent.bind(this)}>
+            <li className={`listItem-${n++}`} key={key} onMouseEnter={this.mouseEnterEvent.bind(this,n)} onMouseLeave={this.mouseLeaveEvent.bind(this)}>
             <h2><i></i><span> {key} </span></h2><div className="moudel">
                 {
                     this.state.json[key].map((value,key)=>
@@ -105,7 +125,10 @@ class Banner extends React.Component {
                 }
 
             </div>
-            <BannerHideContainer />
+           
+            {
+              this.state.stores.currentIndex==n &&  this.state.stores.BannerHideBoxIsShow && <BannerHideContainer />
+            }
             </li>
         )
 
@@ -145,5 +168,6 @@ class Banner extends React.Component {
 
   
 }
+
 
 export default Banner;
