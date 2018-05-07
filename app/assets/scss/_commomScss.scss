@@ -132,3 +132,15 @@ input[type=search]::-webkit-search-cancel-button {
         display: none;
     }
 }
+
+@mixin animation($arg...) {
+    animation: $arg;
+    -ms-animation: $arg;
+    /* IE 9 */
+    -moz-animation: $arg;
+    /* Firefox */
+    -webkit-animation: $arg;
+    /* Safari 和 Chrome */
+    -o-animation: $arg;
+    /* Opera */
+}
