@@ -5,7 +5,7 @@ export default class Sidebar extends React.Component{
     constructor(props){
         super(props)
         this.state={
-            hideTipIsSHow:false,
+            hideTipIsShow:false,
             keysWord:''
         }
     }
@@ -16,7 +16,7 @@ export default class Sidebar extends React.Component{
     mouseEnterEvent(parmas){
         
         this.setState({
-            hideTipIsSHow:true,
+            hideTipIsShow:true,
             keysWord:parmas
         })
                
@@ -39,8 +39,8 @@ export default class Sidebar extends React.Component{
                 <div className="backTop" onMouseEnter={this.mouseEnterEvent.bind(this,'BACKTOP')}>
                     
                 </div>
-                <span className={`feedbackHide ${this.state.hideTipIsShoe && this.state.keysWord == 'FEEDBACK' : 'active'? '' }`}>用户反馈</span>
-                <span className="backTopHide">回顶部</span>
+                <span className={`feedbackHide ${this.state.hideTipIsShow && this.state.keysWord == 'FEEDBACK' ? 'active': '' }`}>用户反馈</span>
+                <span className={`backTopHide ${this.state.hideTipIsShow && this.state.keysWord == 'BACKTOP' ? 'active': '' }`}>回顶部</span>
             </div>
         )
     }
