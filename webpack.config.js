@@ -2,7 +2,7 @@
  * @Author: mikey.dongqizhen
  * @Date: 2018-04-17 16:43:52
  * @Last Modified by: mikey.dongqizhen
- * @Last Modified time: 2018-05-08 13:59:53
+ * @Last Modified time: 2018-05-09 18:48:02
  */
 const webpack = require("webpack");
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -11,15 +11,19 @@ const CleanWebpackPlugin = require("clean-webpack-plugin"); // 删除文件
 const path = require('path');
 const PurifyCssWebpack = require('purifycss-webpack');
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const glob = require('glob');
 const CopyWebpackPlugin = require('copy-webpack-plugin'); // 拷贝文件
-
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");//压缩css代码
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const devMode = process.env.NODE_ENV !== 'production'
 
 module.exports = {
-    entry: __dirname + '/app/main.js',
+    entry: {
+       main: __dirname + '/app/main.js',
+       vendor: [
+            'lodash','react','swiper','react-dom','react-router','react-router-dom'
+       ]
+    },
     output: {
         path: path.resolve(__dirname, "build"), //打包后的文件存放的地方
         filename: "bundle-[hash].js", //打包后输出文件的文件名
@@ -29,9 +33,9 @@ module.exports = {
     mode: devMode ? 'development' : 'production',
     optimization: {
         splitChunks: {
-            /* minSize: 1,
-            chunks: "initial",
-            name: "vendor", */
+            //minSize: 1,//块的最小值
+            chunks: "initial",//入口chunks
+            name: "vendor",
             cacheGroups: {
                 styles: {
                   name: 'styles',
@@ -45,9 +49,9 @@ module.exports = {
             new UglifyJsPlugin({
                 cache: true,
                 parallel: true,
-                sourceMap: true
+                sourceMap: true // set to true if you want JS source maps
             }),
-            new OptimizeCSSAssetsPlugin({}) // use OptimizeCSSAssetsPlugin
+            new OptimizeCSSAssetsPlugin({}) // use OptimizeCSSAssetsPlugin 压缩css代码
         ]
     },
     devServer: {
@@ -65,7 +69,7 @@ module.exports = {
                 use: {
                     loader: "babel-loader", //loader的名称（必须）
                 },
-                exclude: /node_modules/ //{include/exclude} 手动添加必须处理的文件（文件夹）或屏蔽不需要处理的文件（文件夹）（可选）
+                exclude:  /node_modules\/(?!(dom7|ssr-window|swiper)\/).*/ //{include/exclude} 手动添加必须处理的文件（文件夹）或屏蔽不需要处理的文件（文件夹）（可选）
             }, {
                 test: /\.css$/,
                 use: /* ExtractTextPlugin.extract({
@@ -117,7 +121,7 @@ module.exports = {
         ]
     },
     plugins: [
-        new CleanWebpackPlugin('bulid/*.*', {
+        new CleanWebpackPlugin('build/*.*', {
             // Absolute path to your webpack root folder (paths appended to this) Default:
             // root of your package
             root: __dirname,
@@ -127,10 +131,10 @@ module.exports = {
 
             // Use boolean "true" to test/emulate delete. (will not remove files). Default:
             // false - remove files
-            dry: true,
+            dry: false,
 
             // If true, remove files on recompile. Default: false
-            watch: false,
+            watch: true,
 
             // Instead of removing whole path recursively, remove all path's content with
             // exclusion of provided immediate children. Good for not removing shared files
@@ -147,6 +151,7 @@ module.exports = {
             beforeEmit: true
         }),
         new webpack.BannerPlugin('版权所有，翻版必究'),
+        new webpack.HashedModuleIdsPlugin(),//vendor 的 hash 不改变
         new HtmlWebpackPlugin({ //这个插件的作用是依据一个简单的index.html模板，生成一个自动引用你打包后的JS文件的新index.html。这在每次生成的js文件名称不同时非常有用（比如添加了hash值）
             filename: 'index.html', //定义生成的页面的名称
             template: __dirname + "/app/index.html", //new 一个这个插件的实例，并传入相关的参数
