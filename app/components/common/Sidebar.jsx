@@ -6,7 +6,8 @@ export default class Sidebar extends React.Component{
         super(props)
         this.state={
             hideTipIsShow:false,
-            keysWord:''
+            keysWord:'',
+            background:'rgba(1,157,221,1)'
         }
     }
 
@@ -23,8 +24,20 @@ export default class Sidebar extends React.Component{
         
     }
 
-    mouseLeaveEvent(parmas){
-        
+    mouseLeaveEvent(){
+        this.setState({
+            hideTipIsShow:false,
+        })
+    }
+
+    moveToTop(){    
+        (function smoothscroll(){
+            var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
+            if (currentScroll > 0) {
+                 window.requestAnimationFrame(smoothscroll);
+                 window.scrollTo (0,currentScroll - (currentScroll/10));
+            }
+        })();       
     }
 
     render(){
@@ -33,14 +46,16 @@ export default class Sidebar extends React.Component{
                 <div className="shoppingCar">
                     <p><i></i><span>购物车</span></p>
                 </div>
-                <div className="feedback" onMouseEnter={this.mouseEnterEvent.bind(this,'FEEDBACK')} >
-                    
+                <div className="feedback" onMouseEnter={this.mouseEnterEvent.bind(this,'FEEDBACK')} onMouseLeave={this.mouseLeaveEvent.bind(this)}>
+                    <i></i>
+                    <span className={`feedbackHide ${this.state.hideTipIsShow && this.state.keysWord == 'FEEDBACK' ? 'active': '' }`}>用户反馈</span>
                 </div>
-                <div className="backTop" onMouseEnter={this.mouseEnterEvent.bind(this,'BACKTOP')}>
-                    
+                <div className="backTop" onMouseEnter={this.mouseEnterEvent.bind(this,'BACKTOP')} onMouseLeave={this.mouseLeaveEvent.bind(this)} onClick={this.moveToTop.bind(this)}>
+                    <i></i>
+                    <span className={`backTopHide ${this.state.hideTipIsShow && this.state.keysWord == 'BACKTOP' ? 'active': '' }`}>回顶部</span>
                 </div>
-                <span className={`feedbackHide ${this.state.hideTipIsShow && this.state.keysWord == 'FEEDBACK' ? 'active': '' }`}>用户反馈</span>
-                <span className={`backTopHide ${this.state.hideTipIsShow && this.state.keysWord == 'BACKTOP' ? 'active': '' }`}>回顶部</span>
+                
+                
             </div>
         )
     }

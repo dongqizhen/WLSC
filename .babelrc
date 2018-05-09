@@ -1,5 +1,5 @@
 {
-    "presets": ["react", "env"],
+    "presets": ["react", "env","es2015"],
     "env": {
         "development": {
             "plugins": [
@@ -16,3 +16,4 @@
         }
     }
 }
+

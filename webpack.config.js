@@ -2,7 +2,7 @@
  * @Author: mikey.dongqizhen
  * @Date: 2018-04-17 16:43:52
  * @Last Modified by: mikey.dongqizhen
- * @Last Modified time: 2018-05-06 14:46:58
+ * @Last Modified time: 2018-05-08 13:59:53
  */
 const webpack = require("webpack");
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -98,7 +98,7 @@ module.exports = {
                 }) */
                 [
                     devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
-                    'css-loader',
+                    'css-loader?importLoaders=1',
                     'postcss-loader',
                     'sass-loader',
                 ],
