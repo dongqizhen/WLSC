@@ -55,9 +55,6 @@ export default class Index extends React.Component {
                         {routes.map((route, i) => (
                             <RouteWithSubRoutes key={i} {...route}/>
                         ))} 
-                        {/* <Route path="/" exact component={Container}/>
-                        <Route path="/search" component={Search}/> */}
-
                         <Sidebar />
                         <Footer />
                     </div>
