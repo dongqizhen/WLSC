@@ -1,6 +1,6 @@
 import React from 'react';
 import ListItem from '../common/ListItem.jsx';
-import './../scss/Container.scss';
+import './scss/Container.scss';
 import Banner from '../common/Banner.jsx';
 import Filter from './Filter.jsx';
 export default class Container extends React.Component {

@@ -1,5 +1,5 @@
 import React from 'react';
-import './../scss/Filter.scss';
+import './scss/Filter.scss';
 export default class Filter extends React.Component {
     constructor() {
         super();
