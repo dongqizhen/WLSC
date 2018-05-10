@@ -5,6 +5,7 @@ import Container from './Container.jsx';
 
 /* import styles from '../common/scss/Header.css' */
 import Banner from '../common/Banner.jsx';
+import Filter from './Filter.jsx';
 export default class Index extends React.Component {
         constructor() {
             super();
@@ -20,6 +21,7 @@ export default class Index extends React.Component {
                 <div>
                     <Header />
                     <Banner />
+                    <Filter />
                     <Container />
                     <Footer />
                 </div>

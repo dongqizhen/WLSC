@@ -1,11 +1,20 @@
 import React from 'react';
 import List from '../common/List.jsx';
 import './../scss/Container.scss';
-import { placeholder, clearFix } from 'polished';
+import { placeholder, clearFix, position } from 'polished';
 export default class Container extends React.Component {
-    constructor() {
-        super();
-        this.state = {};
+
+    constructor(props) {
+        super(props);
+        this.state = {
+           data:[
+            {id:1,productName:"hello",brandName:"GE",modelName:"console.log",saleNumber:"123",price:'456',shopName:"北京华脉诚信科技有限公司",photo:'../../assets/images/photo.png'},
+            {id:2,productName:"测试产品1号",brandName:"GE",modelName:"dkhfskjfhfksdj",saleNumber:"123",price:'456',shopName:"北京华脉诚信科技有限公司",photo:'../../assets/images/photo.png'},
+            {id:3,productName:"测试产品2号",brandName:"飞利浦",modelName:"console.log",saleNumber:"123",price:'456',shopName:"北京华脉诚信科技有限公司",photo:'../../assets/images/photo.png'},
+            {id:4,productName:"hello world",brandName:"GE",modelName:"水电费是否sad",saleNumber:"123",price:'456',shopName:"北京华脉诚信科技有限公司",photo:'../../assets/images/photo.png'},
+            {id:5,productName:"撒地方是否",brandName:"GE",modelName:"胜多负少东方发生的发生水电费",saleNumber:"123",price:'456',shopName:"北京华脉诚信科技有限公司",photo:'../../assets/images/photo.png'}
+        ]
+        };
     }
 
     render() {
@@ -18,21 +27,11 @@ export default class Container extends React.Component {
                             <div className="placeholder"></div>
                         </div>
                         <ul className="clearfix">
-                            <li className="left">
-                                <List />
-                            </li>
-                            <li className="left">
-                                <List />
-                            </li>
-                            <li className="left">
-                                <List />
-                            </li>
-                            <li className="left">
-                                <List />
-                            </li>
-                            <li className="left">
-                                <List />
-                            </li>
+                          {
+                              this.state.data.map((item,index,array)=>{
+                                  return <li data-key={item.id} className="left"><List item={item}/></li>
+                              })
+                          }
                         </ul>
                     </div>
                     <div className="shop">

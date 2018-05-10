@@ -2,7 +2,7 @@ import React from 'react';
 import './scss/Banner.scss';
 import Swiper from 'swiper';
 
-
+console.log(Swiper)
 class BannerHideContainer extends React.Component{
     constructor(){
         super()

@@ -4,13 +4,29 @@
     background: #FFFFFF;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.26);
     border-radius: 4px;
+    &:hover {
+        cursor: pointer;
+        .proImg img {
+            -webkit-transform: scale(1.2);
+            -moz-transform: scale(1.2);
+            -ms-transform: scale(1.2);
+            -o-transform: scale(1.2);
+            transform: scale(1.2);
+        }
+    }
     .proImg {
         width: 100%;
         height: 180px;
+        overflow: hidden;
+        box-sizing: border-box;
         img {
             width: 100%;
             height: 100%;
-            vertical-align: bottom;
+            -webkit-transition: all 1s ease;
+            -moz-transition: all 1s ease;
+            -ms-transition: all 1s ease;
+            -o-transition: all 1s ease;
+            transition: all 1s ease;
         }
     }
     .itemText {
@@ -33,6 +49,8 @@
             color: #333;
             margin-bottom: 10px;
             @extend %wordWrap;
+            font-family: Arial;
+            font-weight: 600;
         }
         .brandAndModel {
             font-size: 12px;
@@ -100,6 +118,8 @@
             overflow: hidden;
             width: 185px;
             display: block;
+            font-family: Arial;
+            font-weight: 600;
         }
     }
 }

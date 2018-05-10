@@ -1,8 +1,8 @@
 import React from 'react';
 import './scss/List.scss';
 export default class List extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {};
     }
 
@@ -14,18 +14,19 @@ export default class List extends React.Component {
                       <img src="../../assets/imageOther/banner1.png" alt=""/>
                   </div>
                   <div className="itemText">
-                       <h2>Pioneer Console Hand</h2>
+                  {console.log(this.props)}
+                       <h2>{this.props.item.productName}</h2>
                        <div className="brandAndModel clearfix">
                             <div className="wordWrap brandBox left">
-                                <span>品牌:</span><span className="brandName">飞利浦飞利浦飞利浦飞利浦</span>
+                                <span>品牌:</span><span className="brandName">{this.props.item.brandName}飞利浦飞利浦飞利浦飞利浦</span>
                             </div>
                             <div className="wordWrap modelBox right">
-                                <span>型号:</span><span className="modelName">飞利浦测试1号2号3号</span>
+                                <span>型号:</span><span className="modelName">{this.props.item.modelName}飞利浦测试1号2号3号</span>
                             </div>
                        </div>
                        <div className="saleNumAndPrice clearfix">
-                            <div className="left saleNum"><span>销量:</span><span className="number">123456</span></div>
-                            <div className="right price"><span className="priceImg">￥</span><span className="priceValue">123456789</span></div>
+                            <div className="left saleNum"><span>销量:</span><span className="number">{this.props.item.saleNumber}123456</span></div>
+                            <div className="right price"><span className="priceImg">￥</span><span className="priceValue">{this.props.item.price}123456789</span></div>
                        </div>
 
                   </div>

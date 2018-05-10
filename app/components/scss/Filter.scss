@@ -1,0 +1,96 @@
+.filter {
+    .common {
+        width: 1200px;
+        margin: 0 auto;
+        .bigSort {
+            margin-left: 240px;
+            margin-top: 74px;
+            margin-bottom: 54px;
+            height: 42px;
+            ul {
+                li {
+                    width: 178px;
+                    height: 42px;
+                    line-height: 42px;
+                    text-align: center;
+                    float: left;
+                    margin-right: 3px;
+                    background-color: #EBEBEC;
+                    border-radius: 3px;
+                    font-size: 18px;
+                    color: #666;
+                    // background-image: linear-gradient(red 36px, yellow 6px);
+                    &:hover {
+                        background-color: rgba(55, 61, 65, 0.80);
+                        color: #fff;
+                    }
+                    &.active {
+                        background-color: #019ddd;
+                        color: #fff;
+                    }
+                }
+            }
+        }
+        .codeSort {
+            width: 586px;
+            margin: 0 auto;
+            margin-bottom: 57px;
+            .codeIndex {
+                width: 455px;
+                height: 25px;
+                margin: 0 auto;
+                margin-bottom: 8px;
+                ul {
+                    li {
+                        float: left;
+                        font-size: 18px;
+                        color: #999;
+                        margin-right: 103px;
+                        &:first-child+li+li+li {
+                            margin-right: 0;
+                        }
+                        &:hover {
+                            color: #666;
+                        }
+                    }
+                }
+            }
+            .leftArrow {
+                float: left;
+                display: block;
+                width: 28px;
+                height: 28px;
+                background: url('../../assets/images/sprite.png') no-repeat 0 -111px;
+            }
+            .line {
+                width: 500px;
+                height: 6px;
+                border-radius: 8px;
+                background-color: #D8D8D8;
+                margin-right: 15px;
+                margin-left: 15px;
+                float: left;
+                margin-top: 11px;
+            }
+            .rightArrow {
+                float: left;
+                display: block;
+                width: 28px;
+                height: 28px;
+                background: url('../../assets/images/sprite.png') no-repeat -72px -111px;
+            }
+        }
+        .filterResult {
+            ul {
+                li {
+                    float: left;
+                    margin-right: 60px;
+                    height: 30px;
+                    line-height: 30px;
+                    font-size: 22px;
+                    color: #999;
+                }
+            }
+        }
+    }
+}
