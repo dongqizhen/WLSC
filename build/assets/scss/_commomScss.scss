@@ -132,3 +132,27 @@ input[type=search]::-webkit-search-cancel-button {
         display: none;
     }
 }
+
+@mixin animation($arg...) {
+    animation: $arg;
+    -ms-animation: $arg;
+    /* IE 10 */
+    -moz-animation: $arg;
+    /* Firefox */
+    -webkit-animation: $arg;
+    /* Safari 和 Chrome */
+    -o-animation: $arg;
+    /* Opera */
+}
+
+@mixin transition($arg...)  {
+    transition: $arg;
+    -ms-transition: $arg;
+    /* IE 10 */
+    -moz-transition: $arg;
+    /* Firefox */
+    -webkit-transition: $arg;
+    /* Safari 和 Chrome */
+    -o-transition: $arg;
+    /* Opera */
+}

@@ -29,6 +29,7 @@ class Header extends React.Component {
                 </div> 
                 <div className = "searchContainer">
                     <div className="seach_btn">
+                        <i></i>
                         <input type="text" placeholder="请输入搜索内容，如飞利浦血压仪等" />
                         <span>搜索</span>
                     </div>

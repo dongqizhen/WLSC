@@ -51,49 +51,6 @@
                             float: left;
                         }
                     }
-                    @mixin backgroundPosition($x,$y){
-                        h2{
-                            i{
-                                background-position: $x $y;
-                            }
-                        }
-                    }
-                    &.listItem-0{
-                        
-                        &:hover{
-                            @include backgroundPosition(-6px,-78px)
-                        }
-                    }
-                    &.listItem-1{
-                        @include backgroundPosition(-42px,-50px);
-                        
-                        &:hover{
-                            @include backgroundPosition(-42px,-78px);
-                        }
-                    }
-                    &.listItem-2{
-                        @include backgroundPosition(-77px,-50px);
-                        
-                        &:hover{
-                            @include backgroundPosition(-77px,-78px);
-                        }
-                    }
-                    &.listItem-3{
-                        @include backgroundPosition(-114px,-50px);
-                        
-                        &:hover{
-                            @include backgroundPosition(-114px,-78px);
-                        }
-                    }
-                    >.moudel{
-                        span{
-                            display: inline-block;
-                            font-size: 15px;
-                            color: #FFFFFF;
-                            margin-right: 20px;
-                            margin-bottom: 10px;
-                        }
-                    }
                     .bannerHideContainer{
                         height: 545px;
                         width: 805px;
@@ -102,7 +59,7 @@
                         left:240px ;
                         padding: 14px 0px;
                         background: rgba(255,255,255,0.9);
-                        display: none;
+                        //display: none;
                         ul{
                            li{
                                 padding-top: 20px;
@@ -142,6 +99,57 @@
                         }
                         
                     }
+                    @mixin backgroundPosition($x,$y){
+                        h2{
+                            i{
+                                background-position: $x $y;
+                            }
+                        }
+                    }
+                    &.listItem-0{
+                        
+                        &:hover{
+                            @include backgroundPosition(-6px,-78px)
+                        }
+                    }
+                    &.listItem-1{
+                        @include backgroundPosition(-42px,-50px);
+                        .bannerHideContainer{
+                            top:-136.25px;
+                        }
+                        &:hover{
+                            @include backgroundPosition(-42px,-78px);
+                        }
+                    }
+                    &.listItem-2{
+                        .bannerHideContainer{
+                            top:-136.25px * 2;
+                        }
+                        @include backgroundPosition(-77px,-50px);
+                        
+                        &:hover{
+                            @include backgroundPosition(-77px,-78px);
+                        }
+                    }
+                    &.listItem-3{
+                        @include backgroundPosition(-114px,-50px);
+                        .bannerHideContainer{
+                            top:-136.25px * 3;
+                        }
+                        &:hover{
+                            @include backgroundPosition(-114px,-78px);
+                        }
+                    }
+                    >.moudel{
+                        span{
+                            display: inline-block;
+                            font-size: 15px;
+                            color: #FFFFFF;
+                            margin-right: 20px;
+                            margin-bottom: 10px;
+                        }
+                    }
+                   
                     &:hover{
                         background: rgba(255,255,255,0.83);
                         h2,>.moudel>span{

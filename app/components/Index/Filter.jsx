@@ -29,8 +29,7 @@ export default class Filter extends React.Component {
                         <ul>
                         {
                             this.state.lists.map((value,index,array)=>{
-                                console.log(value.id)
-                                return <li data-key={'key'+value.id} className={this.state.addClass==value.id?"active":""}  onClick={()=>this.handleBackgroundColor(value.id)}>{value.name}</li>
+                                return <li key={Date.now()+'key'+value.id} className={this.state.addClass==value.id?"active":""}  onClick={()=>this.handleBackgroundColor(value.id)}>{value.name}</li>
                             })
                         }
                         </ul>
