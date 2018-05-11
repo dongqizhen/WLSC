@@ -1,8 +1,8 @@
 import React from 'react';
 import {BrowserRouter as Router, Route,Link} from 'react-router-dom';
-import Header from '../common/Header.jsx';
-import Footer from '../common/Footer.jsx';
-
+import Breadcrumb from '../common/Breadcrumb.jsx';
+import { Header } from '../common/Header.jsx';
+import Cassify from './Cassify.jsx';
 class Search extends React.Component {
   constructor() {
     super();
@@ -12,7 +12,9 @@ class Search extends React.Component {
   render() {
     return (
         <div className="serach">
-            你好
+          <Header />
+          <Breadcrumb history={this.props.history} />
+          <Cassify />
         </div>
     );
   }

@@ -5,16 +5,15 @@
     height: 100%;
     top: 0;
     right: 0;
-    background: #373D41;
+    //background: #373D41;
     .shoppingCar{
         position: absolute;
         width: 35px;
         height: 100px;
-        
+        background: #019DDD;
         font-size: 12px;
         cursor: pointer;
-        top: 50%;
-        margin-top: -70px;
+        top: 800px - 71px - 101px;
         left: 0px;
         p{
             width: 22px;
@@ -28,13 +27,14 @@
             height: 16px; 
             width: 22px;
             background: url(../../../assets/images/sprite.png) no-repeat;
-            background-position: -4px -27px;
+            background-position:-4px -0px;
+           // background-position: -4px -27px;
             }
             span{
                 display: block;
                 width: 22px;
                 color: #FFFFFF;
-                text-align: center;
+               
                 writing-mode: vertical-lr;
                 line-height: 22px;
                 letter-spacing: 3px;
@@ -42,21 +42,21 @@
             }  
         }
         
-        &:hover{
+        /* &:hover{
             background: #019DDD;
             p{   
                 i{
                     background-position:-4px -0px; 
                 }
             }
-        }
+        } */
     }
     .feedback{
         height: 35px;
         width:35px;
         position: absolute;
         left: 0;
-        bottom: 35px;
+        top: 800px - 71px;
         cursor: pointer;
     
         i{
@@ -66,7 +66,9 @@
             position: absolute;
             z-index: 10000;
             background: url(../../../assets/images/sprite.png) no-repeat;
-            background-position: -67px 10px;background-color:  #373D41;
+            background-position: -67px 10px;
+            //background-color:  #373D41;
+            background-color: #019DDD;
             
         }
         span{
@@ -80,7 +82,8 @@
             z-index:-1;
             font-size: 12px;
             color: #FFFFFF;
-            background-color:  #373D41;
+            //background-color:  #373D41;
+            background-color: #019DDD;
             text-align: center;
             line-height: 35px;
             border-top-left-radius: 3px;
@@ -88,13 +91,13 @@
             &.feedbackHide{
                 &.active{ 
                     left:-90px;
-                    background: rgba(1,157,221,1);
+                   // background: rgba(1,157,221,1);
                 }
             }
             &.backTopHide{
                 &.active{
                     left:-90px;
-                    background: rgba(1,157,221,1);
+                   // background: rgba(1,157,221,1);
                 }
             }
         }
@@ -110,7 +113,7 @@
           background-position: -106px 10px;  
         }
         @extend .feedback ;
-        bottom: 0;
+        top:800px - 35px;
         
     }
     
