@@ -37,6 +37,7 @@
     "postcss-loader": "^2.1.4",
     "purify-css": "^1.2.5",
     "purifycss-webpack": "^0.7.0",
+    "react-paginate": "^5.2.3",
     "react-transform-hmr": "^1.0.4",
     "sass-loader": "^7.0.1",
     "style-loader": "^0.20.3",
@@ -48,6 +49,7 @@
   },
   "main": "webpack.config.js",
   "dependencies": {
+    "axios": "^0.18.0",
     "babel-polyfill": "^6.26.0",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",

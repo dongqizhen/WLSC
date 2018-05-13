@@ -2,7 +2,7 @@
  * @Author: mikey.dongqizhen
  * @Date: 2018-04-17 16:43:52
  * @Last Modified by: mikey.dongqizhen
- * @Last Modified time: 2018-05-11 18:56:19
+ * @Last Modified time: 2018-05-13 13:48:18
  */
 const webpack = require("webpack");
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -21,7 +21,7 @@ module.exports = {
     entry: {
        main: __dirname + '/app/main.js',
        vendor: [
-            'lodash','react','swiper','react-dom','react-router','react-router-dom'
+            'lodash','react','swiper','react-dom','react-router','react-router-dom','react-paginate','axios'
        ]
     },
     output: {

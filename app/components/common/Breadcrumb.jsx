@@ -1,13 +1,13 @@
 import React from 'react';
 import {BrowserRouter as Router, Route,Link,Switch} from 'react-router-dom';
 import './scss/Breadcrumb.scss';
-
+import CassifyStores from '../../stores/CassifyStores.jsx';
 
 class Breadcrumb extends React.Component {
   constructor() {
     super();
     this.state = {
-        
+        stores:CassifyStores.getAllStore()
     };
   }
 
@@ -15,20 +15,35 @@ class Breadcrumb extends React.Component {
     
   }
 
+  componentDidMount() {
+    CassifyStores.addChangeListener(this._onChange.bind(this))
+  }
+
+  componentWillUnmount(){
+    CassifyStores.removeChangeListener(this._onChange.bind(this))
+  }
+
+  _onChange(){
+    this.setState({
+      stores:CassifyStores.getAllStore()
+    })
+  }
+
   render() {
     return (
         <ul className="breadcrumb clearfix">
-            <li><Link to="/" onClick={this._hundleClick.bind(this)}>首页</Link></li>
+            <li><Link to="/">首页</Link></li>
             <li><Link to="#"  className="active">搜索结果页</Link></li>
-            <li><span>配件</span></li>
-            <li><span>二级分类</span></li>  
+            {
+              this.state.stores.BreadCrumbStores.map((val,i)=>(
+                <li key={i}><span>{val}</span></li>
+              ))
+            } 
         </ul>
     );
   }
 
-  componentDidMount() {
-   // this.setState();
-  }
+  
 }
 
 export default Breadcrumb;
