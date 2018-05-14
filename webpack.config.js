@@ -2,7 +2,7 @@
  * @Author: mikey.dongqizhen
  * @Date: 2018-04-17 16:43:52
  * @Last Modified by: mikey.dongqizhen
- * @Last Modified time: 2018-05-13 13:48:18
+ * @Last Modified time: 2018-05-14 09:16:43
  */
 const webpack = require("webpack");
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -38,7 +38,7 @@ module.exports = {
             name: "vendor",
             cacheGroups: {
                 styles: {
-                  name: 'styles',
+                  name: 'styleshell',
                   test: /\.scss|css|sass$/,
                   chunks: 'all',
                   enforce: true
@@ -104,7 +104,7 @@ module.exports = {
                     use: ['css-loader', 'sass-loader']
                 }) */
                 [
-                    devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+                    /* devMode ? 'style-loader' : */ MiniCssExtractPlugin.loader,
                     'css-loader?importLoaders=1',
                     'postcss-loader',
                     'sass-loader',
@@ -155,6 +155,12 @@ module.exports = {
         }),
         new webpack.BannerPlugin('版权所有，翻版必究'),
         new webpack.HashedModuleIdsPlugin(),//vendor 的 hash 不改变
+        new MiniCssExtractPlugin({
+            // Options similar to the same options in webpackOptions.output
+            // both options are optional
+            filename: devMode ? 'css/[name].css' : 'css/[name].[hash].css',
+            chunkFilename: devMode ? 'css/[id].css' : 'css/[id].[hash].css',
+        }),
         new HtmlWebpackPlugin({ //这个插件的作用是依据一个简单的index.html模板，生成一个自动引用你打包后的JS文件的新index.html。这在每次生成的js文件名称不同时非常有用（比如添加了hash值）
             filename: 'index.html', //定义生成的页面的名称
             template: __dirname + "/app/index.html", //new 一个这个插件的实例，并传入相关的参数
@@ -166,7 +172,7 @@ module.exports = {
         new webpack.HotModuleReplacementPlugin(), //热加载插件
         new webpack.optimize.OccurrenceOrderPlugin(), //为组件分配ID，通过这个插件webpack可以分析和优先考虑使用最多的模块，并为它们分配最小的ID
         // new webpack.optimize.UglifyJsPlugin(), //压缩JS代码
-        new ExtractTextPlugin("css/style.css"), //分离CSS和JS文件
+        //new ExtractTextPlugin("css/style.css"), //分离CSS和JS文件
         new PurifyCssWebpack({ // 消除冗余css代码
             paths: glob.sync(path.join(__dirname, 'app/*.html')) //path.join合并路径
         }),
@@ -175,12 +181,6 @@ module.exports = {
                 from: path.resolve(__dirname, 'app/assets'), //将哪里的文件
                 to: './assets' // 复制到哪里
             }
-        ]),
-        new MiniCssExtractPlugin({
-            // Options similar to the same options in webpackOptions.output
-            // both options are optional
-            filename: devMode ? 'css/[name].css' : 'css/[name].[hash].css',
-            chunkFilename: devMode ? 'css/[id].css' : 'css/[id].[hash].css',
-        })
+        ])
     ]
 }
