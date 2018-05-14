@@ -2,7 +2,7 @@
  * @Author: mikey.dongqizhen
  * @Date: 2018-04-17 16:43:52
  * @Last Modified by: mikey.dongqizhen
- * @Last Modified time: 2018-05-14 09:16:43
+ * @Last Modified time: 2018-05-14 11:36:59
  */
 const webpack = require("webpack");
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -13,16 +13,16 @@ const PurifyCssWebpack = require('purifycss-webpack');
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const glob = require('glob');
 const CopyWebpackPlugin = require('copy-webpack-plugin'); // 拷贝文件
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");//压缩css代码
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin"); //压缩css代码
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const devMode = process.env.NODE_ENV !== 'production'
 
 module.exports = {
     entry: {
-       main: __dirname + '/app/main.js',
-       vendor: [
-            'lodash','react','swiper','react-dom','react-router','react-router-dom','react-paginate','axios'
-       ]
+        main: __dirname + '/app/main.js',
+        vendor: [
+            'lodash', 'react', 'swiper', 'react-dom', 'react-router', 'react-router-dom', 'react-paginate', 'axios'
+        ]
     },
     output: {
         path: path.resolve(__dirname, "build"), //打包后的文件存放的地方
@@ -34,14 +34,19 @@ module.exports = {
     optimization: {
         splitChunks: {
             //minSize: 1,//块的最小值
-            chunks: "initial",//入口chunks
+            chunks: "initial", //入口chunks
             name: "vendor",
             cacheGroups: {
                 styles: {
-                  name: 'styleshell',
-                  test: /\.scss|css|sass$/,
-                  chunks: 'all',
-                  enforce: true
+                    name: 'styles',
+                    test: /\.scss|css|sass$/,
+                    chunks: 'all',
+                    enforce: true
+                },
+                commons: {
+                    name: "commons",
+                    chunks: "initial",
+                    minChunks: 2
                 }
             }
         },
@@ -50,8 +55,8 @@ module.exports = {
                 cache: true,
                 parallel: true,
                 sourceMap: true, // set to true if you want JS source maps
-                uglifyOptions:{
-                    ie8:true
+                uglifyOptions: {
+                    ie8: true
                 }
             }),
             new OptimizeCSSAssetsPlugin({}) // use OptimizeCSSAssetsPlugin 压缩css代码
@@ -66,62 +71,62 @@ module.exports = {
         open: false //自动拉起浏览器
     },
     module: {
-        rules: [
-            {
-                test: /(\.jsx|\.js)$/, //一个用以匹配loaders所处理文件的拓展名的正则表达式（必须）
-                use: {
-                    loader: "babel-loader", //loader的名称（必须）
-                },
-                exclude:  /node_modules\/(?!(dom7|ssr-window|swiper)\/).*/ //{include/exclude} 手动添加必须处理的文件（文件夹）或屏蔽不需要处理的文件（文件夹）（可选）
-            }, {
-                test: /\.css$/,
-                use: /* ExtractTextPlugin.extract({
-                    fallback: "style-loader",
-                    use: [
-                        {
-                            loader: "css-loader",
-                            options: {
-                                url: false,
-                                minimize: true,
-                                sourceMap: true,
-                                modules: true, // 指定启用css modules
-                                localIdentName: "[name]__[local]--[hash:base64:5]" // 指定css的类名格式
-                            }
-                        }, {
-                            loader: "postcss-loader"
-                        }
-                    ],
-                    publicPath:'../' //解决css背景图的路径问题
-                }) */[
-                    MiniCssExtractPlugin.loader,  // replace ExtractTextPlugin.extract({..})
-                    "css-loader"
-                ]
-            }, {
-                test: /\.(sass|scss)$/,
-                use: /* ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    //resolve-url-loader may be chained before sass-loader if necessary
-                    use: ['css-loader', 'sass-loader']
-                }) */
+        rules: [{
+            test: /(\.jsx|\.js)$/, //一个用以匹配loaders所处理文件的拓展名的正则表达式（必须）
+            use: {
+                loader: "babel-loader", //loader的名称（必须）
+            },
+            exclude: /node_modules\/(?!(dom7|ssr-window|swiper)\/).*/ //{include/exclude} 手动添加必须处理的文件（文件夹）或屏蔽不需要处理的文件（文件夹）（可选）
+        }, {
+            test: /\.css$/,
+            use:
+            /* ExtractTextPlugin.extract({
+                               fallback: "style-loader",
+                               use: [
+                                   {
+                                       loader: "css-loader",
+                                       options: {
+                                           url: false,
+                                           minimize: true,
+                                           sourceMap: true,
+                                           modules: true, // 指定启用css modules
+                                           localIdentName: "[name]__[local]--[hash:base64:5]" // 指定css的类名格式
+                                       }
+                                   }, {
+                                       loader: "postcss-loader"
+                                   }
+                               ],
+                               publicPath:'../' //解决css背景图的路径问题
+                           }) */
                 [
-                    /* devMode ? 'style-loader' : */ MiniCssExtractPlugin.loader,
-                    'css-loader?importLoaders=1',
-                    'postcss-loader',
-                    'sass-loader',
-                ],
-            }, {
-                test: /\.(png|jpg|gif)$/, // 处理图片
-                use: [
-                    {
-                        loader: 'url-loader',
-                        options: { // 这里的options选项参数可以定义多大的图片转换为base64
-                            limit: 5000, // 表示小于50kb的图片转为base64,大于50kb的是路径
-                            outputPath: './assets/images' //图片打包出去的目录
-                        }
-                    }
-                ]
-            }
-        ]
+                MiniCssExtractPlugin.loader, // replace ExtractTextPlugin.extract({..})
+                "css-loader"
+            ]
+        }, {
+            test: /\.(sass|scss)$/,
+            use:
+            /* ExtractTextPlugin.extract({
+                               fallback: 'style-loader',
+                               //resolve-url-loader may be chained before sass-loader if necessary
+                               use: ['css-loader', 'sass-loader']
+                           }) */
+                [
+                devMode ? 'style-loader' :
+                MiniCssExtractPlugin.loader,
+                'css-loader?importLoaders=1',
+                'postcss-loader',
+                'sass-loader',
+            ],
+        }, {
+            test: /\.(png|jpg|gif)$/, // 处理图片
+            use: [{
+                loader: 'url-loader',
+                options: { // 这里的options选项参数可以定义多大的图片转换为base64
+                    limit: 5000, // 表示小于50kb的图片转为base64,大于50kb的是路径
+                    outputPath: './assets/images' //图片打包出去的目录
+                }
+            }]
+        }]
     },
     plugins: [
         new CleanWebpackPlugin('build/*.*', {
@@ -154,7 +159,7 @@ module.exports = {
             beforeEmit: true
         }),
         new webpack.BannerPlugin('版权所有，翻版必究'),
-        new webpack.HashedModuleIdsPlugin(),//vendor 的 hash 不改变
+        new webpack.HashedModuleIdsPlugin(), //vendor 的 hash 不改变
         new MiniCssExtractPlugin({
             // Options similar to the same options in webpackOptions.output
             // both options are optional
@@ -176,11 +181,9 @@ module.exports = {
         new PurifyCssWebpack({ // 消除冗余css代码
             paths: glob.sync(path.join(__dirname, 'app/*.html')) //path.join合并路径
         }),
-        new CopyWebpackPlugin([
-            { // 静态文件输出 也就是复制粘贴
-                from: path.resolve(__dirname, 'app/assets'), //将哪里的文件
-                to: './assets' // 复制到哪里
-            }
-        ])
+        new CopyWebpackPlugin([{ // 静态文件输出 也就是复制粘贴
+            from: path.resolve(__dirname, 'app/assets'), //将哪里的文件
+            to: './assets' // 复制到哪里
+        }])
     ]
 }

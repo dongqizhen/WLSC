@@ -1,5 +1,4 @@
 import React from 'react';
-import './scss/ListItem.scss';
 export default class ListItem extends React.Component {
     constructor(props) {
         super(props);

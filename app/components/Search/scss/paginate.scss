@@ -1,13 +1,15 @@
 .paginationContainer{
-    height: 35px;
+    min-height: 35px;
     width: 1200px;
     margin: 40px auto;
+    margin-top: 10px;
     text-align: center;
-    ul{
+    ul.pagination{
         height: 100%;
         margin: 0 auto;
         display: inline-block;
         overflow: hidden;
+        margin-top: 20px;
         a{
             text-decoration: none;
         }
@@ -31,6 +33,12 @@
                 }
             }
 
+            &:hover{
+                background-color: rgba(55, 61, 65, 0.8);
+                color: #fff;
+                border: rgba(55, 61, 65, 0.8) 1px solid;
+            }
+
             &.previous{
                 margin-left: 0;
             }
@@ -49,6 +57,12 @@
             &.break-me{
                 border-top: none;
                 border-bottom: none;
+                &:hover{
+                    background-color: #fff;
+                    color: #666;
+                    border-left:  none;
+                    border-right: 1px solid #E9E9E9;
+                }
             }
         }
     }
