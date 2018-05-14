@@ -11,10 +11,12 @@
         height: 100%;
         line-height: 55px;
         padding-right: 25px;
+        position: relative;
         a{
             font-size: 12px;
             color: #019DDD;
             cursor: pointer;
+            display: block;
             //color: #666666; 
             &.active{
                 color: #666666;
@@ -35,6 +37,17 @@
             color: #019DDD;
             border: 1px dotted #019DDD;
             border-radius: 4px
+        }
+        i{
+            position: absolute;
+            right: 10px;
+            display: block;
+            height: 9px;
+            width: 5px;
+            background: url(../../../assets/images/listSprite.png) no-repeat;
+            background-position: 0 -1px;
+            top: 50%;
+            margin-top: -4.5px;
         }
     }
 }

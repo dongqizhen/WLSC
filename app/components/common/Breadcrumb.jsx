@@ -32,11 +32,14 @@ class Breadcrumb extends React.Component {
   render() {
     return (
         <ul className="breadcrumb clearfix">
-            <li><Link to="/">首页</Link></li>
-            <li><Link to="#"  className="active">搜索结果页</Link></li>
+            <li><Link to="/">首页</Link><i></i></li>
+            <li><Link to="#"  className="active">搜索结果页</Link><i></i></li>
             {
               this.state.stores.BreadCrumbStores.map((val,i)=>(
-                <li key={i}><span>{val}</span></li>
+                <li key={i}>
+                  <span>{val}</span>
+                  {this.state.stores.BreadCrumbStores.length - 1 > i && <i></i> }
+                </li>
               ))
             } 
         </ul>

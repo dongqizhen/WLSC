@@ -49,8 +49,8 @@ class Search extends React.Component {
                   })
               } 
             </ul>
-            <ReactPaginate previousLabel={"<上一页"}
-                        nextLabel={"下一页>"}
+            <ReactPaginate previousLabel={<span><i></i>上一页</span>}
+                        nextLabel={<span>下一页<i></i></span>}
                         breakLabel={<a>...</a>}
                         breakClassName={"break-me"}
                         pageCount={20}

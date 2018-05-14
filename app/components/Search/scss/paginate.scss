@@ -28,8 +28,72 @@
                 border-left: 1px solid #E9E9E9;
                 width: 73px;
                 margin: 0px 6px;
+                
                 &.disabled{
                     color: #CCCCCC;
+                    &:hover{
+                        background-color: #fff;
+                        color: #CCCCCC;
+                        border: 1px solid #E9E9E9;
+                    }
+                }
+                span{
+                    //vertical-align: middle;
+                    position: relative;
+                   i{
+                        display: inline-block;
+                        //position: absolute;
+                        width: 4px;
+                        height: 7px;
+                        background: url(../../../assets/images/listSprite.png) no-repeat;
+                        background-position: -77px -2px;
+                        margin-right: 5px;
+                        margin-bottom: 1px;
+                    } 
+                }
+                
+            }
+            &.previous{
+                span{
+                    i{
+                        background-position: -105px -2px;
+                    }
+                }
+                &.disabled{
+                    i{
+                        background-position: -77px -2px;
+                    }
+                }
+                &:hover{
+                    span{
+                        i{
+                            background-position: -77px -2px;
+                        }
+                    }
+                    
+                }
+            }
+
+            &.next{
+                span{
+                    i{
+                        background-position: -91px -2px;
+                        margin-right: 0px;
+                        margin-left: 5px;
+                    }
+                }
+                &.disabled{
+                    i{
+                        background-position: -118px -2px;
+                    }
+                }
+                &:hover{
+                    span{
+                        i{
+                            background-position: -118px -2px;
+                        }
+                    }
+                    
                 }
             }
 
