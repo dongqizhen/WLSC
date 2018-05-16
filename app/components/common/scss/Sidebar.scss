@@ -1,6 +1,8 @@
-@import '../../../assets/scss/_commomScss'; 
+@import '../../../assets/scss/_commomScss.scss'; 
 .sidebar{
     position: fixed;
+
+    display: flex;
     width: 35px;
     height: 100%;
     top: 0;

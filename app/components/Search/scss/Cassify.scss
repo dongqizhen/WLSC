@@ -1,4 +1,4 @@
-@import '../../../assets/scss/_commomScss';
+@import '../../../assets/scss/_commomScss.scss';
 .Cassify{
     //min-height: 423px;
     width: 1200px;
@@ -13,33 +13,54 @@
             line-height: 42px;
             margin-right: 30px;
             cursor: pointer;
+            -webkit-font-smoothing: antialiased;
             &:hover{
                 color: #019DDD;
             }
         }
         >li{
             width: 100%;
-            min-height: 42px;
+            height: 42px;
             border-bottom:rgba($color: #D8D8D8, $alpha: 0.45) solid 1px;
-            
+            position: relative;
+            padding-left: 120px;
+            overflow: hidden;
+            transition: height 0.3s ease;
+            //-webkit-font-smoothing: antialiased;
+            &.active{
+                height: 126px;
+                .more.active{
+                    span{
+                        
+                    }
+                }
+            }
             >span{
                 width: 120px;
-                min-height: 42px;
+                height: 100%;
                 float: left;
                 background: rgba(1,157,221,0.05);
                 font-size: 14px;
+                -webkit-font-smoothing: antialiased;
                 color: #AAAAAA;
                 text-align: center;
                 line-height: 42px;
+                position: absolute;
+                top: 0;
+                left: 0;
             }
             >div{
                 float: left;
                 padding-left: 22px;
-                height: 42px;
+                //height: 42px;
                 width: 1200px - 120px - 80px;
-                >span{
-                    @extend %common_span;
+               // overflow: hidden;
+                >.mainContainer{
+                    >span{
+                        @extend %common_span;
+                    }
                 }
+                
             }
             >p.more{
                 width: 80px;
@@ -49,6 +70,22 @@
                 font-size: 12px;
                 color: #019DDD;
                 float: left;
+                cursor: pointer;
+                span{
+                    display: inline-block;
+                    width: 9px;
+                    height: 5px;
+                    background: url(../../../assets/images/listSprite.png) no-repeat;
+                    background-position:-15px -4px  ;
+                    margin-left: 4px;
+                    margin-bottom: 1px;
+                    transform: rotateZ(0deg);
+                    transition: transform .3s ease;
+                    &.active{
+                        margin-bottom: 2px;
+                        transform: rotateZ(900deg);
+                    }
+                }
             } 
             &.trademark,&.model{
                 height: 125px;

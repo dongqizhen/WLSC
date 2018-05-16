@@ -2,7 +2,7 @@
  * @Author: mikey.dongqizhen
  * @Date: 2018-04-17 16:43:52
  * @Last Modified by: mikey.dongqizhen
- * @Last Modified time: 2018-05-15 10:53:38
+ * @Last Modified time: 2018-05-16 16:41:33
  */
 const webpack = require("webpack");
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -110,12 +110,16 @@ module.exports = {
                                //resolve-url-loader may be chained before sass-loader if necessary
                                use: ['css-loader', 'sass-loader']
                            }) */
+                           /* devMode?[MiniCssExtractPlugin.loader,'css-loader?importLoaders=1','postcss-loader','sass-loader?sourceMap=true']:[MiniCssExtractPlugin.loader,
+                            'css-loader?importLoaders=1',
+                            {loader:"postcss-loader", options: { sourceMap: true }}, 
+                            'sass-loader?sourceMap=true'] */
                 [
-                devMode ? 'style-loader' :
+                devMode ? 'style-loader':
                 MiniCssExtractPlugin.loader,
                 'css-loader?importLoaders=1',
-                {loader:postcss-loader, options: { sourceMap: true,exec:true }},
-                'sass-loader',
+                {loader:"postcss-loader", options: { sourceMap: true }}, 
+                'sass-loader?sourceMap=true',
             ],
         }, {
             test: /\.(png|jpg|gif)$/, // 处理图片

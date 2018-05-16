@@ -164,9 +164,9 @@ class BannerHideContainer extends React.Component{
                         <div>
                             <ul className = "clearfix">
                                 <li> 登陆/我的商城 </li> 
-                                <li> 购物车 </li> 
+                                <li> <i></i> 购物车 </li> 
                                 <li> 商家中心 </li> 
-                                <li className = "last"> 网来商城App </li>
+                                <li className = "last"> <i></i> 网来商城App </li>
                             </ul> 
                         </div>
                     </div>

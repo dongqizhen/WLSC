@@ -8,12 +8,13 @@ class Cassify extends React.Component {
     super();
     this.state = {
         minValue:"",
-        maxValue:""
+        maxValue:"",
+        activeElement:false
     };
   }
 
   componentDidMount(){
-
+    
   }
 
   minHandleChange(e){
@@ -31,56 +32,102 @@ class Cassify extends React.Component {
     })
   }
 
+  // <更多> 按钮点击
+  moreBtnHandleClick(e){
+    const Change_height = e.target.previousSibling.offsetHeight;
+
+     e.target.parentNode.style.height = this.state.activeElement ?   '42px' : e.target.parentNode.style.height = Change_height + 'px' ;
+    
+    this.setState({
+        activeElement:this.state.activeElement ? false : true
+    })
+  }
+
   render() {
     return (
         <div className="Cassify">
             <ul>
-                <li>
+                <li className={`clearfix`}>
                     <span>产品类型</span>
                     <div className="clearfix">
-                        <span onClick={this.handleClick.bind(this)}>配件</span>
-                        <span>配件</span>
-                        <span>配件</span>
-                        <span>设备团购</span>
-                        <span>配件</span>
-                        <span>配件</span>
-                        <span>配件</span>
-                        <span>信息化团购</span>
-                        <span>配件</span>
+                        <div className="mainContainer clearfix">
+                            <span onClick={this.handleClick.bind(this)}>配件</span>
+                            <span>配件</span>
+                            <span>配件</span>
+                            <span>设备团购</span>
+                            <span>配件</span>
+                            <span>配件</span>
+                            <span>配件</span>
+                            <span>信息化团购</span>
+                            <span>配件</span>
+                            <span>配件</span>
+                            <span>配件</span>
+                            <span>设备团购</span>
+                            <span>配件</span>
+                            <span>配件</span>
+                            <span>配件</span>
+                            <span>信息化团购</span>
+                            <span>配件</span>
+                            <span>配件</span>
+                            <span>配件</span>
+                            <span>设备团购</span>
+                            <span>配件</span>
+                            <span>配件</span>
+                            <span>配件</span>
+                            <span>信息化团购</span>
+                            <span>配件</span>
+                            <span>配件</span>
+                            <span>信息化团购</span>
+                            <span>配件</span>
+                            <span>配件</span>
+                            <span>配件</span>
+                            <span>设备团购</span>
+                            <span>配件</span>
+                            <span>配件</span>
+                            <span>配件</span>
+                            <span>信息化团购</span>
+                            <span>配件</span>
+                        </div>
+                        
                     </div>
-                    <p className="more">
+                    <p className="more" onClick={this.moreBtnHandleClick.bind(this)}>
                         更多
+                        <span className={this.state.activeElement?'active':''}></span>
                     </p>
                 </li>
-                <li>
+                <li className="clearfix">
                     <span>二级分类</span>
                     <div className="clearfix">
-                        <span>二级分类</span>
-                        <span>配件</span>
-                        <span>配件</span>
-                        <span>设备团购</span>
-                        <span>配件</span>
-                        <span>配件</span>
-                        <span>配件</span>
-                        <span>信息化团购</span>
-                        <span>配件</span>
+                        <div className="mainContainer clearfix">
+                            <span>二级分类</span>
+                            <span>配件</span>
+                            <span>配件</span>
+                            <span>设备团购</span>
+                            <span>配件</span>
+                            <span>配件</span>
+                            <span>配件</span>
+                            <span>信息化团购</span>
+                            <span>配件</span>
+                            </div>
                     </div>
                 </li>
-                <li>
+                <li className="clearfix">
                     <span>三级分类</span>
                     <div className="clearfix">
-                        <span>治疗机用X射线管</span>
-                        <span>配件</span>
-                        <span>配件</span>
-                        <span>设备团购</span>
-                        <span>配件</span>
-                        <span>配件</span>
-                        <span>配件</span>
-                        <span>信息化团购</span>
-                        <span>配件</span>
+                        <div className="mainContainer clearfix">
+                            <span>治疗机用X射线管</span>
+                            <span>配件</span>
+                            <span>配件</span>
+                            <span>设备团购</span>
+                            <span>配件</span>
+                            <span>配件</span>
+                            <span>配件</span>
+                            <span>信息化团购</span>
+                            <span>配件</span>
+                        </div>
                     </div>
                 </li>
-                <li className="trademark">
+                <li className="trademark clearfix">
                     <span>品牌</span>
                     <div className="clearfix">
                         <div className="clearfix top">
@@ -105,7 +152,7 @@ class Cassify extends React.Component {
                         </div>
                     </div>
                 </li>
-                <li className="model">
+                <li className="model clearfix">
                     <span>型号</span>
                     <div className="clearfix">
                         <div className="clearfix top">
@@ -130,7 +177,7 @@ class Cassify extends React.Component {
                         </div>
                     </div>
                 </li>
-                <li className="prices">
+                <li className="prices clearfix">
                     <span>价格区间</span>
                     <div className="clearfix">
                         <input type="text" placeholder="输入最低价" className="ipt_min" value={this.state.minValue} onChange={this.minHandleChange.bind(this)} />

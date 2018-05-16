@@ -1,4 +1,4 @@
-@import '../../../assets/scss/_commomScss';
+@import '../../../assets/scss/_commomScss.scss';
 @include inputColor( #B2B2B2);
 .header{
     a{
@@ -16,12 +16,34 @@
                     font-size: 14px;
                     color: #AAAAAA;
                     float: left;
+                   /*  display: flex;
+                    align-items: center; */
                     margin-right: 30px;
                     line-height: 40px;
                     cursor: pointer;
+                    i{
+                        background: url(../../../assets/images/sprite.png) no-repeat;
+                        float: left;
+                        margin-top: 12px;
+                        height: 15px;
+                    }
+                    &:nth-child(2){
+                        i{
+                          width: 16px;
+                          margin-right: 7px;
+                          background-position: -6px -27px;
+                        }
+                    }
                     &.last{
                         margin-right: 0;
-                    }
+                        i{
+                           
+                           width: 9px; 
+                           margin-right: 7px;
+                           background-position: -46px -27px;
+                           
+                        }
+                    } 
                     &:hover{
                         color: #019DDD;
                     }

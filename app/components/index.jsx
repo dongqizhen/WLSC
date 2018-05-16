@@ -2,8 +2,7 @@ import React from 'react';
 import {BrowserRouter as Router, Route,Link,Switch} from 'react-router-dom';
 import Footer from './common/Footer.jsx';
 import Container from './Index/Container.jsx';
-/* import styles from '../common/scss/Header.css' */
-/* import Banner from '../common/Banner.jsx'; */
+
 import Sidebar from './common/Sidebar.jsx';
 import Search from './Search/Search.jsx';
 
