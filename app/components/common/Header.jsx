@@ -152,11 +152,21 @@ class BannerHideContainer extends React.Component{
  class Header extends React.Component {
     constructor() {
         super();
-        this.state = {};
+        this.state = {
+            inputValue:''
+        };
+    }
+
+    inputValueChangeEvent(e){
+        this.setState({inputValue: e.target.value});
+    }
+
+    handleClick(e){    
+        this.state.inputValue == '' ?
+        e.preventDefault() : ''
     }
 
     render() {
-        
         return (
             <Router basename="/">
                 <div className = "header">
@@ -180,8 +190,8 @@ class BannerHideContainer extends React.Component{
                         <div className = "searchContainer">
                             <div className="seach_btn">
                                 <i></i>
-                                <input type="text" placeholder="请输入搜索内容，如飞利浦血压仪等" />
-                                <Link to="/search" target="_blank">搜索</Link>
+                                <input type="text" placeholder="请输入搜索内容，如飞利浦血压仪等" onChange={this.inputValueChangeEvent.bind(this)} />
+                                <Link to={{pathname:"/search",search:'?value='+this.state.inputValue}} target="_blank" onClick={this.handleClick.bind(this)}>搜索</Link>
                             </div>
                             <ul className="clearfix">
                                 <li>血压仪</li>   

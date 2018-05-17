@@ -30,8 +30,14 @@ class Footer extends React.Component {
                     <span>Copyright 2005-2016 allbring.com Corporation, All Rights Reserved</span>
                     <span>京ICP备16013128号</span>
                 </div>
+                <div className="code">
+                    <img src="../../assets/images/code.png" alt=""/>
+                    <span>欢迎下载网来商城App</span>
+                </div>
             </div>
+            
         </div>
+        
     )
   }
 
