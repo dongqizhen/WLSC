@@ -2,7 +2,7 @@
  * @Author: mikey.dongqizhen
  * @Date: 2018-04-17 16:43:52
  * @Last Modified by: mikey.dongqizhen
- * @Last Modified time: 2018-05-16 16:41:33
+ * @Last Modified time: 2018-05-21 18:12:13
  */
 const webpack = require("webpack");
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -63,7 +63,7 @@ module.exports = {
         ]
     },
     devServer: {
-        contentBase: "./build", //本地服务器所加载的页面所在的目录
+        contentBase: "/build", //本地服务器所加载的页面所在的目录
         historyApiFallback: true, //不跳转
         inline: true, //实时刷新
         hot: true, //模块热更新
@@ -110,15 +110,15 @@ module.exports = {
                                //resolve-url-loader may be chained before sass-loader if necessary
                                use: ['css-loader', 'sass-loader']
                            }) */
-                           /* devMode?[MiniCssExtractPlugin.loader,'css-loader?importLoaders=1','postcss-loader','sass-loader?sourceMap=true']:[MiniCssExtractPlugin.loader,
-                            'css-loader?importLoaders=1',
-                            {loader:"postcss-loader", options: { sourceMap: true }}, 
-                            'sass-loader?sourceMap=true'] */
+            /* devMode?[MiniCssExtractPlugin.loader,'css-loader?importLoaders=1','postcss-loader','sass-loader?sourceMap=true']:[MiniCssExtractPlugin.loader,
+             'css-loader?importLoaders=1',
+             {loader:"postcss-loader", options: { sourceMap: true }}, 
+             'sass-loader?sourceMap=true'] */
                 [
-                devMode ? 'style-loader':
+                devMode ? 'style-loader' :
                 MiniCssExtractPlugin.loader,
                 'css-loader?importLoaders=1',
-                {loader:"postcss-loader", options: { sourceMap: true }}, 
+                { loader: "postcss-loader", options: { sourceMap: true } },
                 'sass-loader?sourceMap=true',
             ],
         }, {

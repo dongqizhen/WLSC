@@ -5,18 +5,22 @@ import Container from './Index/Container.jsx';
 
 import Sidebar from './common/Sidebar.jsx';
 import Search from './Search/Search.jsx';
+import StoreDetailes from './Store/StoreDetails.jsx';
 
 
 const routes=[
     {
         path:'/',
         component:Container,
-        exact:true,
-        headerIsShow:true
+        exact:true
     },
     {
         path:'/search',
         component:Search
+    },
+    {
+        path:'/store/:id',
+        component:StoreDetailes
     }
 ]
     

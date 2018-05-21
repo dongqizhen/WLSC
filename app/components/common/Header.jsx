@@ -206,7 +206,7 @@ class BannerHideContainer extends React.Component{
                         </div>
                     </div>
                     
-                  <Bannerheader headerStyle={this.props.bannerHeaderIsShow} />
+                    { (this.props.bannerHeaderStyle == undefined || this.props.bannerHeaderStyle) && <Bannerheader headerStyle={this.props.bannerHeaderIsShow} />}
                 </div>
             </Router>    
         );
