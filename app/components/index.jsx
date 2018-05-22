@@ -4,7 +4,7 @@ import Footer from './common/Footer.jsx';
 import Container from './Index/Container.jsx';
 
 import Sidebar from './common/Sidebar.jsx';
-import Search from './Search/Search.jsx';
+import {Search} from './Search/Search.jsx';
 import StoreDetailes from './Store/StoreDetails.jsx';
 
 

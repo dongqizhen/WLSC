@@ -1,24 +1,82 @@
 import React from 'react';
+import './scss/StoreNav.scss'
+import Swiper from 'swiper';
+import Cassify from '../Search/Cassify.jsx';
+import { PageAndList } from '../Search/Search.jsx';
+import { ListNav } from '../common/ListNav.jsx';
 
 class StoreNav extends React.Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      currentIndex:0,
+      navArr:["全部商品","店铺介绍","店铺资料"]
+    };
   }
 
+  handleClick(index,e){
+    e.preventDefault();
+
+    this.setState({
+      currentIndex:index
+    })
+
+    this.mySwiper.swipeTo(index)
+  }
 
   componentDidMount() {
-    
+    this.mySwiper = new Swiper('.swiper-container', {
+      speed:500,
+      //noSwiping : true,
+      simulateTouch : false,
+      onSlideChangeStart: ()=>{
+        this.setState({
+          currentIndex:this.mySwiper.activeIndex
+        })
+      }
+    })
+  }
+
+  componentWillUnmount(){
+    this.mySwiper.destroy()
   }
 
   render() {
+    const {currentIndex , navArr} = this.state;
     return (
         <div className="StoreNav">
-            <ul>
-                <li>全部商品(99)</li>
-                <li>店铺介绍</li>
-                <li>店铺资料</li>
+            <ul className="StoreTabHeader clearfix">
+
+              {
+                navArr.map((val,i)=>{
+                  return (
+                    <li key={i} className={currentIndex==i?"active":''} onClick={this.handleClick.bind(this,i)}><span>
+                    {
+                      i==0?val+="（99）":val
+                    } 
+                    </span><i></i></li>
+                  )
+                })
+              }
+
+               { /* <li onClick={this.handleClick.bind(this)}><span>全部商品(99)</span></li>
+                <li><span>店铺介绍</span></li>
+                <li><span>店铺资料</span></li> */}
             </ul>
+            <div className="swiper-container">
+              <ul className="StoreTabBody swiper-wrapper clearfix">
+                <li className="swiper-slide swiper-no-swiping">
+                  <Cassify />
+                  <ListNav />
+                  <PageAndList />
+                
+                </li>
+                <li className="swiper-slide swiper-no-swiping">vv</li>
+                <li className="swiper-slide swiper-no-swiping"><p><span>店铺类型：</span>原厂</p>
+                <p><span>店铺名称：</span>西门子直营店</p></li>
+              </ul>
+            </div>
+            
         </div>
     );
   }
