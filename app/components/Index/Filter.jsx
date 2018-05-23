@@ -5,60 +5,97 @@ export default class Filter extends React.Component {
         super();
         this.state = {
             lists:[
-                {id:1,name:"配件"},
-                {id:2,name:"耗材"},
-                {id:3,name:"整机"},
-                {id:4,name:"人工"}
+                {id:1,name:"配件",image:"../../assets/images/accessory.png",activeImage:"../../assets/images/activeAccessory.png"},
+                {id:2,name:"整机",image:"../../assets/images/activeWholeMachine.png",activeImage:"../../assets/images/activeWholeMachine.png"},
+                {id:3,name:"耗材",image:"../../assets/images/consumable.png",activeImage:"../../assets/images/activeConsumable.png"},
+                {id:4,name:"人工",image:"../../assets/images/artificial.png",activeImage:"../../assets/images/artificial.png"}
             ],
-            addClass:1
+            addClass:1,
+            addTextClass:"a",
+            secondSort:"shop"
         };
     }
 
-    handleBackgroundColor(addClass){
-        console.log(addClass);
+    handleActive(addClass){
         this.setState({
             addClass:addClass
         })
     }
-
+    handleSortBackground(secondSort){
+        this.setState({
+            secondSort:secondSort
+        })
+    }
+    handleActiveTextColor(addTextClass){
+        this.setState({
+            addTextClass:addTextClass
+        })
+    }
     render() {
         return (
             <div className="filter">
                 <div className="common">
                     <div className="bigSort">
-                        <ul>
+                        <ul className="clearfix">
                         {
                             this.state.lists.map((value,index,array)=>{
-                                return <li key={Date.now()+'key'+value.id} className={this.state.addClass==value.id?"active":""}  onClick={()=>this.handleBackgroundColor(value.id)}>{value.name}</li>
+                                return <li key={value.id} className={this.state.addClass==value.id?"active":""}  onClick={()=>this.handleActive(value.id)}><img src={this.state.addClass==value.id?value.activeImage:value.image} alt=""/>
+                                <div className="sortName">{value.name}</div>
+                                <div className="triangle"></div>
+                                </li>
                             })
                         }
                         </ul>
                     </div>
-                    <div className="codeSort">
-                        <div className="codeIndex">
-                            <ul>
-                                <li>A-G</li>
-                                <li>H-N</li>
-                                <li>O-T</li>
-                                <li>U-Z</li>
-                            </ul>
-                        </div>
-                        <div className="lineBox clearfix">
-                             <span className="leftArrow"></span>
-                             <div className="line"></div>
-                             <span className="rightArrow"></span>
+                </div>
+                <div className="secondSort">
+                    <div className="selectTitle">
+                        <div className="common">
+                            <div className="filterSort">
+                                <div className="shopOrProduct left clearfix">
+                                    <div className={this.state.secondSort=="shop"?"active itemSort left":"itemSort left"} onClick={()=>this.handleSortBackground("shop")}>
+                                         <div className="secondSortName">按店铺</div>
+                                         <div className="activeStyle">
+                                            <div className="blueBar"></div>
+                                            <div className="blueTriangle"></div>
+                                         </div>
+                                    </div>
+                                    <div className={this.state.secondSort=="product"?"active itemSort right":"itemSort right"} onClick={()=>this.handleSortBackground("product")}>
+                                         <div className="secondSortName productSecondSortName">按产品</div>
+                                         <div className="activeStyle">
+                                            <div className="blueBar"></div>
+                                            <div className="blueTriangle"></div>
+                                         </div>
+                                    </div>
+                                </div>
+                                <div className="codeIndex right">
+                                    <ul className="clearfix">
+                                        <li className={this.state.addTextClass=="a"?"active":""} onClick={()=>this.handleActiveTextColor("a")}>A-G</li>
+                                        <li className={this.state.addTextClass=="h"?"active":""} onClick={()=>this.handleActiveTextColor("h")}>H-N</li>
+                                        <li className={this.state.addTextClass=="o"?"active":""} onClick={()=>this.handleActiveTextColor("o")}>O-T</li>
+                                        <li className={this.state.addTextClass=="u"?"active":""} onClick={()=>this.handleActiveTextColor("u")}>U-Z</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
                         </div>
                     </div>
                     <div className="filterResult">
                         <ul className="clearfix">
-                            <li>治疗机用x射线管</li>
-                            <li>治疗机用x射线管</li>
-                            <li>治疗机用x射线管</li>
-                            <li>治疗机用x射线管</li>
-                            <li>治疗机用x射线管</li>
-                            <li>治疗机线管</li>
-                            <li>治疗机用x射线管</li>
+                            <li>这里最多显示十个字符</li>
+                            <li>这里最多显示十个字符</li>
+                            <li>这里最多显示十个字符</li>
+                            <li>这里最多显示十个字符</li>
+                            <li>这里最多显示十个字符</li>
+                            <li>这里最多显示十个字符这里最多显示十个字符</li>
+                            <li>这里最多显示十个字符这里最多显示十个字符</li>
+                            <li>这里最多显示十个字符这里最多显示十个字符</li>
+                            <li>这里最多显示十个字符这里最多显示十个字符</li>
+                            <li>这里最多显示十个字符这里最多显示十个字符</li>
                         </ul>
+                        <div className="scanMore">
+                            查看更多
+                        </div>
                     </div>
                 </div>
             </div>

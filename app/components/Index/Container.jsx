@@ -43,7 +43,7 @@ export default class Container extends React.Component {
                               this.state.data.map((item,index,array)=>{
                                 //   {console.log(item)}
                                   return <li key={Date.now()+"key"+item.id} className="left">
-                                              <ListItem itemObj={item}/>
+                                              <ListItem itemInfo={item}/>
                                   </li>
                               })
                           }
