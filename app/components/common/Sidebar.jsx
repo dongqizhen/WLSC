@@ -31,18 +31,31 @@ export default class Sidebar extends React.Component{
     }
 
     moveToTop(){    
-        (function smoothscroll(){
+        /* (function smoothscroll(){
             var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
             if (currentScroll > 0) {
                  window.requestAnimationFrame(smoothscroll);
-                 window.scrollTo (0,currentScroll - (currentScroll/10));
+                 window.scrollTo (0,currentScroll - (currentScroll/10));   
             }
-        })();       
+        })();  */   
+
+        var timeOut;
+            (function scrollToTop() {
+                if (document.body.scrollTop!=0 || document.documentElement.scrollTop!=0){
+
+                    window.scrollBy(0,-50);
+                    timeOut=setTimeout(scrollToTop,10);
+
+                }else{ 
+                    clearTimeout(timeOut)
+                };
+            })()
     }
 
     render(){
         return(
             <div className="sidebar">
+            
                 <div className="shoppingCar">
                     <p><i></i><span>购物车</span></p>
                 </div>

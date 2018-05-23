@@ -2,7 +2,7 @@
  * @Author: mikey.dongqizhen
  * @Date: 2018-04-17 16:43:52
  * @Last Modified by: null
- * @Last Modified time: 2018-05-11 14:02:20
+ * @Last Modified time: 2018-05-23 11:30:10
  */
 const webpack = require("webpack");
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -21,7 +21,7 @@ module.exports = {
     entry: {
         main: __dirname + '/app/main.js',
         vendor: [
-            'lodash', 'react', 'swiper', 'react-dom', 'react-router', 'react-router-dom'
+            'lodash', 'react', 'swiper', 'react-dom', 'react-router', 'react-router-dom', 'react-paginate', 'axios'
         ]
     },
     output: {
@@ -42,6 +42,11 @@ module.exports = {
                     test: /\.scss|css|sass$/,
                     chunks: 'all',
                     enforce: true
+                },
+                commons: {
+                    name: "commons",
+                    chunks: "initial",
+                    minChunks: 2
                 }
             }
         },
@@ -49,13 +54,16 @@ module.exports = {
             new UglifyJsPlugin({
                 cache: true,
                 parallel: true,
-                sourceMap: true // set to true if you want JS source maps
+                sourceMap: true, // set to true if you want JS source maps
+                uglifyOptions: {
+                    ie8: true
+                }
             }),
             new OptimizeCSSAssetsPlugin({}) // use OptimizeCSSAssetsPlugin 压缩css代码
         ]
     },
     devServer: {
-        contentBase: "./bulid", //本地服务器所加载的页面所在的目录
+        contentBase: "/build", //本地服务器所加载的页面所在的目录
         historyApiFallback: true, //不跳转
         inline: true, //实时刷新
         hot: true, //模块热更新
@@ -102,11 +110,16 @@ module.exports = {
                                //resolve-url-loader may be chained before sass-loader if necessary
                                use: ['css-loader', 'sass-loader']
                            }) */
+            /* devMode?[MiniCssExtractPlugin.loader,'css-loader?importLoaders=1','postcss-loader','sass-loader?sourceMap=true']:[MiniCssExtractPlugin.loader,
+             'css-loader?importLoaders=1',
+             {loader:"postcss-loader", options: { sourceMap: true }}, 
+             'sass-loader?sourceMap=true'] */
                 [
-                devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+                devMode ? 'style-loader' :
+                MiniCssExtractPlugin.loader,
                 'css-loader?importLoaders=1',
-                'postcss-loader',
-                'sass-loader',
+                { loader: "postcss-loader", options: { sourceMap: true } },
+                'sass-loader?sourceMap=true',
             ],
         }, {
             test: /\.(png|jpg|gif)$/, // 处理图片
@@ -151,6 +164,12 @@ module.exports = {
         }),
         new webpack.BannerPlugin('版权所有，翻版必究'),
         new webpack.HashedModuleIdsPlugin(), //vendor 的 hash 不改变
+        new MiniCssExtractPlugin({
+            // Options similar to the same options in webpackOptions.output
+            // both options are optional
+            filename: devMode ? 'css/[name].css' : 'css/[name].[hash].css',
+            chunkFilename: devMode ? 'css/[id].css' : 'css/[id].[hash].css',
+        }),
         new HtmlWebpackPlugin({ //这个插件的作用是依据一个简单的index.html模板，生成一个自动引用你打包后的JS文件的新index.html。这在每次生成的js文件名称不同时非常有用（比如添加了hash值）
             filename: 'index.html', //定义生成的页面的名称
             template: __dirname + "/app/index.html", //new 一个这个插件的实例，并传入相关的参数
@@ -162,19 +181,13 @@ module.exports = {
         new webpack.HotModuleReplacementPlugin(), //热加载插件
         new webpack.optimize.OccurrenceOrderPlugin(), //为组件分配ID，通过这个插件webpack可以分析和优先考虑使用最多的模块，并为它们分配最小的ID
         // new webpack.optimize.UglifyJsPlugin(), //压缩JS代码
-        new ExtractTextPlugin("css/style.css"), //分离CSS和JS文件
+        //new ExtractTextPlugin("css/style.css"), //分离CSS和JS文件
         new PurifyCssWebpack({ // 消除冗余css代码
             paths: glob.sync(path.join(__dirname, 'app/*.html')) //path.join合并路径
         }),
         new CopyWebpackPlugin([{ // 静态文件输出 也就是复制粘贴
             from: path.resolve(__dirname, 'app/assets'), //将哪里的文件
             to: './assets' // 复制到哪里
-        }]),
-        new MiniCssExtractPlugin({
-            // Options similar to the same options in webpackOptions.output
-            // both options are optional
-            filename: devMode ? 'css/[name].css' : 'css/[name].[hash].css',
-            chunkFilename: devMode ? 'css/[id].css' : 'css/[id].[hash].css',
-        })
+        }])
     ]
 }

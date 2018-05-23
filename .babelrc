@@ -1,5 +1,5 @@
 {
-    "presets": ["react", "env", "es2015"],
+    "presets": ["react", "env","es2015"],
     "env": {
         "development": {
             "plugins": [
@@ -12,6 +12,13 @@
                         "locals": ["module"]
                     }]
                 }]
+            ]
+        },
+        "prodution":{
+            "plugins":[
+                ["transform-runtime"],
+                ["transform-es2015-classes",{"loose":true}],
+                "transform-proto-to-assign"  
             ]
         }
     }

@@ -3,6 +3,8 @@ import ListItem from '../common/ListItem.jsx';
 import './scss/Container.scss';
 import Banner from '../common/Banner.jsx';
 import Filter from './Filter.jsx';
+import {Header,Bannerheader } from '../common/Header.jsx';
+import '../common/scss/ListItem.scss';
 export default class Container extends React.Component {
 
     constructor(props) {
@@ -25,6 +27,7 @@ export default class Container extends React.Component {
     render() {
         return (
             <div className="Container">
+                <Header bannerHeaderIsShow={true} />
                 <Banner />
                 <Filter />
                 <div className="listBox">

@@ -1,6 +1,5 @@
 import React from 'react';
 import './scss/Filter.scss';
-import { triangle } from 'polished';
 export default class Filter extends React.Component {
     constructor() {
         super();
