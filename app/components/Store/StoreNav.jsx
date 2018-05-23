@@ -72,8 +72,13 @@ class StoreNav extends React.Component {
                 
                 </li>
                 <li className="swiper-slide swiper-no-swiping">vv</li>
-                <li className="swiper-slide swiper-no-swiping"><p><span>店铺类型：</span>原厂</p>
-                <p><span>店铺名称：</span>西门子直营店</p></li>
+                <li className="swiper-slide swiper-no-swiping">
+                  <p><i></i><span>店铺类型：</span>原厂</p>
+                  <p><i></i><span>店铺名称：</span>西门子直营店</p>
+                  <p><i></i><span>店铺地址：</span>北京市朝阳区望京街道004号</p>
+                  <p><i></i><span>经营范围：</span>扫描仪、B超机、手术床以及各种医疗器械</p>
+                  <p><i></i><span>店铺认证资料：</span>扫描仪、B超机、手术床以及各种医疗器械</p>
+                </li>
               </ul>
             </div>
             
