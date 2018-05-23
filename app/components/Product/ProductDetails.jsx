@@ -15,8 +15,9 @@ class ProductDetails extends React.Component {
          m = new Magnifier(evt);
          m.attach({
             thumb: '#thumb',
-            large: 'http://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Starry_Night_Over_the_Rhone.jpg/400px-Starry_Night_Over_the_Rhone.jpg',
-            largeWrapper: 'preview'
+            large: '../../assets/imageOther/banner1.png',
+            largeWrapper: 'preview',
+            zoomable:true
         });
   }
 
@@ -28,10 +29,10 @@ class ProductDetails extends React.Component {
             <div className="container">
                 <Breadcrumb />
                 <div className="magnifier">
-                    <a className="magnifier-thumb-wrapper" href="http://en.wikipedia.org/wiki/File:Starry_Night_Over_the_Rhone.jpg">
-                        <img id="thumb" src="http://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Starry_Night_Over_the_Rhone.jpg/200px-Starry_Night_Over_the_Rhone.jpg" />
+                    <a className="magnifier-thumb-wrapper" href="#">
+                        <img id="thumb" src="../../assets/imageOther/banner1.png" />
                     </a>
-                    <div className="magnifier-preview" id="preview" style={{width: "200px", height: "133px"}}>Starry Night Over The Rhone<br />by Vincent van Gogh</div>
+                    <div className="magnifier-preview" id="preview"></div>
                 </div>
             </div>
             

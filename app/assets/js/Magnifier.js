@@ -26,12 +26,12 @@ var Magnifier = function(evt, options) {
     var gOptions = options || {},
         curThumb = null,
         curData = {
-            x: 0,
-            y: 0,
-            w: 0,
-            h: 0,
-            lensW: 0,
-            lensH: 0,
+            x: 0, //放大镜左边框离屏幕的距离
+            y: 0, //放大镜上边框离屏幕的距离
+            w: 0, //放大镜的宽度
+            h: 0, //放大镜的高度
+            lensW: 0, //放大镜内置块的宽度
+            lensH: 0, //放大镜内置块的高度
             lensBgX: 0,
             lensBgY: 0,
             largeW: 0,
@@ -43,27 +43,21 @@ var Magnifier = function(evt, options) {
             zoomMax: 5,
             mode: 'outside',
             largeWrapperId: (gOptions.largeWrapper !== undefined) ?
-                (gOptions.largeWrapper.id || null) :
-                null,
+                (gOptions.largeWrapper.id || null) : null,
             status: 0,
             zoomAttached: false,
             zoomable: (gOptions.zoomable !== undefined) ?
-                gOptions.zoomable :
-                false,
+                gOptions.zoomable : false,
             onthumbenter: (gOptions.onthumbenter !== undefined) ?
-                gOptions.onthumbenter :
-                null,
+                gOptions.onthumbenter : null,
             onthumbmove: (gOptions.onthumbmove !== undefined) ?
-                gOptions.onthumbmove :
-                null,
+                gOptions.onthumbmove : null,
             onthumbleave: (gOptions.onthumbleave !== undefined) ?
-                gOptions.onthumbleave :
-                null,
+                gOptions.onthumbleave : null,
             onzoom: (gOptions.onzoom !== undefined) ?
-                gOptions.onzoom :
-                null
+                gOptions.onzoom : null
         },
-        pos = {
+        pos = { //鼠标指针位置信息
             t: 0,
             l: 0,
             x: 0,
@@ -85,7 +79,7 @@ var Magnifier = function(evt, options) {
         curData.zoomMax,
         gMode = gOptions.mode || curData.mode,
         data = {},
-        inBounds = false,
+        inBounds = false, //是否进入放大镜区域
         isOverThumb = 0,
         getElementsByClass = function(className) {
             var list = [],
@@ -187,8 +181,9 @@ var Magnifier = function(evt, options) {
             lens.style.height = data[idx].lensH + 'px';
         },
         getMousePos = function() {
-            var xPos = pos.x - curData.x,
-                yPos = pos.y - curData.y,
+
+            var xPos = pos.x - curData.x, //鼠标指针水平位移与放大镜左边框水平位移之差
+                yPos = pos.y - curData.y, //鼠标指针垂直位移与放大镜左边框垂直位移之差
                 t = 0,
                 l = 0;
 
@@ -205,20 +200,20 @@ var Magnifier = function(evt, options) {
             t = yPos - (curData.lensH / 2);
 
             if (curData.mode !== 'inside') {
-                if (xPos < curData.lensW / 2) {
+                if (xPos <= curData.lensW / 2) {
                     l = 0;
                 }
 
-                if (yPos < curData.lensH / 2) {
+                if (yPos <= curData.lensH / 2) {
                     t = 0;
                 }
 
                 if (xPos - curData.w + (curData.lensW / 2) > 0) {
-                    l = curData.w - (curData.lensW + 2);
+                    l = curData.w - (curData.lensW);
                 }
 
                 if (yPos - curData.h + (curData.lensH / 2) > 0) {
-                    t = curData.h - (curData.lensH + 2);
+                    t = curData.h - (curData.lensH);
                 }
             }
 
@@ -381,7 +376,6 @@ var Magnifier = function(evt, options) {
             var thumbBounds = thumb.getBoundingClientRect(),
                 w = 0,
                 h = 0;
-
             thumbData.x = thumbBounds.left;
             thumbData.y = thumbBounds.top;
             thumbData.w = Math.round(thumbBounds.right - thumbData.x);
@@ -389,7 +383,6 @@ var Magnifier = function(evt, options) {
 
             thumbData.lensW = Math.round(thumbData.w / thumbData.zoom);
             thumbData.lensH = Math.round(thumbData.h / thumbData.zoom);
-
             if (thumbData.mode === 'inside') {
                 w = thumbData.w;
                 h = thumbData.h;
@@ -566,6 +559,7 @@ var Magnifier = function(evt, options) {
     };
 
     evt.attach('mousemove', document, function(e) {
+
         pos.x = e.clientX;
         pos.y = e.clientY;
 

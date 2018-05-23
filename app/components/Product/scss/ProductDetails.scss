@@ -4,4 +4,24 @@
         margin: 0 auto;
         border-top: rgba($color: #D8D8D8, $alpha: 0.48) solid 1px;
     }
+    .magnifier {
+        min-height: 513px;
+        position: relative;
+        .magnifier-thumb-wrapper {
+            img {
+                width: 384px;
+                height: 380px;
+            }
+            #thumb-lens {
+                background: none !important;
+            }
+        }
+        #preview {
+            height: 540px;
+            width: 540px;
+            position: absolute;
+            left: 384px;
+            top: 0;
+        }
+    }
 }
