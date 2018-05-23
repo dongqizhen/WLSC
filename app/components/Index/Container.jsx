@@ -1,6 +1,6 @@
 import React from 'react';
 import ListItem from '../common/ListItem.jsx';
-import './../scss/Container.scss';
+import './scss/Container.scss';
 import Banner from '../common/Banner.jsx';
 import Filter from './Filter.jsx';
 export default class Container extends React.Component {
@@ -40,7 +40,7 @@ export default class Container extends React.Component {
                               this.state.data.map((item,index,array)=>{
                                 //   {console.log(item)}
                                   return <li key={Date.now()+"key"+item.id} className="left">
-                                              <ListItem itemObj={item}/>
+                                              <ListItem itemInfo={item}/>
                                   </li>
                               })
                           }
