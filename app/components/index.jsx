@@ -6,7 +6,7 @@ import Container from './Index/Container.jsx';
 import Sidebar from './common/Sidebar.jsx';
 import {Search} from './Search/Search.jsx';
 import StoreDetailes from './Store/StoreDetails.jsx';
-
+import ProductDetails from './Product/ProductDetails.jsx'
 
 const routes=[
     {
@@ -21,6 +21,10 @@ const routes=[
     {
         path:'/store/:id',
         component:StoreDetailes
+    },
+    {
+        path:'/product/:id',
+        component:ProductDetails
     }
 ]
     

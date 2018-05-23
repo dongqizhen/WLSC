@@ -57,6 +57,32 @@
                 &:nth-child(1) {
                     padding-top: 20px;
                 }
+                &:nth-child(3) {
+                    padding-top: 28px;
+                    P {
+                        font-size: 14px;
+                        color: #666666;
+                        height: 20px;
+                        line-height: 20px;
+                        padding-left: 22px;
+                        margin-bottom: 30px;
+                        //border-left: #019DDD 2px solid;
+                        position: relative;
+                        i {
+                            position: absolute;
+                            display: block;
+                            height: 12px;
+                            width: 2px;
+                            background: #019DDD;
+                            left: 0;
+                            top: 3.5px;
+                        }
+                        span {}
+                        &:nth-child(4) {
+                            margin-bottom: 40px;
+                        }
+                    }
+                }
             }
         }
     }

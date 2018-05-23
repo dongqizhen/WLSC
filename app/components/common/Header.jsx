@@ -166,7 +166,7 @@ class BannerHideContainer extends React.Component{
         e.preventDefault() : ''
     }
 
-    render() {
+render() {
         return (
             <Router basename="/">
                 <div className = "header">
@@ -205,7 +205,11 @@ class BannerHideContainer extends React.Component{
                             </ul>
                         </div>
                     </div>
-                    
+                    {
+                        /**
+                         * bannerHeaderStyle:控制头部导航是否显示
+                         */
+                    }
                     { (this.props.bannerHeaderStyle == undefined || this.props.bannerHeaderStyle) && <Bannerheader headerStyle={this.props.bannerHeaderIsShow} />}
                 </div>
             </Router>    
