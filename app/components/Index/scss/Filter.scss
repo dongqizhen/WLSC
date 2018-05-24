@@ -119,13 +119,17 @@
             border-top: 3px solid #E6E6E6;
             background-color: #f6f6f6;
             padding: 15px 0 40px;
+            .common {
+                width: 1200px;
+                padding: 0 31.5px;
+            }
             ul {
-                width: 1330px;
+                width: 1180px;
                 margin: 0 auto;
                 li {
                     width: 180px;
                     float: left;
-                    margin-right: 10px;
+                    margin-right: 55px;
                     padding: 0 8px;
                     height: 32px;
                     line-height: 32px;
@@ -145,13 +149,13 @@
             }
             .scanMore {
                 text-align: center;
-                border: 1px solid #019DDD;
+                border: 1px solid #666;
                 border-radius: 1px;
                 width: 130px;
                 height: 32px;
                 line-height: 32px;
                 font-size: 13px;
-                color: #019DDD;
+                color: #666;
                 margin: 0 auto;
                 &:hover {
                     cursor: pointer;

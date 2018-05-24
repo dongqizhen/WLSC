@@ -5,10 +5,10 @@ export default class Filter extends React.Component {
         super();
         this.state = {
             lists:[
-                {id:1,name:"配件",image:"../../assets/images/accessory.png",activeImage:"../../assets/images/activeAccessory.png"},
-                {id:2,name:"整机",image:"../../assets/images/activeWholeMachine.png",activeImage:"../../assets/images/activeWholeMachine.png"},
-                {id:3,name:"耗材",image:"../../assets/images/consumable.png",activeImage:"../../assets/images/activeConsumable.png"},
-                {id:4,name:"人工",image:"../../assets/images/artificial.png",activeImage:"../../assets/images/artificial.png"}
+                {id:1,name:"配件",image:"../../assets/images/accessory.png",activeImage:"../../assets/images/accessoryActive.png"},
+                {id:2,name:"整机",image:"../../assets/images/wholeMachine.png",activeImage:"../../assets/images/wholeMachineActive.png"},
+                {id:3,name:"耗材",image:"../../assets/images/consumable.png",activeImage:"../../assets/images/consumableActive.png"},
+                {id:4,name:"人工",image:"../../assets/images/artificial.png",activeImage:"../../assets/images/artificialActive.png"}
             ],
             addClass:1,
             addTextClass:"a",
@@ -81,7 +81,8 @@ export default class Filter extends React.Component {
                         </div>
                     </div>
                     <div className="filterResult">
-                        <ul className="clearfix">
+                    <div className="common">
+                    <ul className="clearfix">
                             <li>这里最多显示十个字符</li>
                             <li>这里最多显示十个字符</li>
                             <li>这里最多显示十个字符</li>
@@ -96,6 +97,8 @@ export default class Filter extends React.Component {
                         <div className="scanMore">
                             查看更多
                         </div>
+                    </div>
+                       
                     </div>
                 </div>
             </div>
