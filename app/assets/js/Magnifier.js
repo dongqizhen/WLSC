@@ -80,7 +80,7 @@ var Magnifier = function(evt, options) {
         gMode = gOptions.mode || curData.mode,
         data = {},
         inBounds = false, //是否进入放大镜区域
-        isOverThumb = 0,
+        isOverThumb = 0, //鼠标是否在放大镜区域内 0 在 1 不在
         getElementsByClass = function(className) {
             var list = [],
                 elements = null,
@@ -188,10 +188,10 @@ var Magnifier = function(evt, options) {
                 l = 0;
 
             inBounds = (
-                    xPos < 0 ||
-                    yPos < 0 ||
-                    xPos > curData.w ||
-                    yPos > curData.h
+                    xPos <= 0 ||
+                    yPos <= 0 ||
+                    xPos >= curData.w ||
+                    yPos >= curData.h
                 ) ?
                 false :
                 true;
@@ -284,6 +284,7 @@ var Magnifier = function(evt, options) {
             }
         },
         onThumbEnter = function() {
+
             curData = data[curIdx];
             curLens = $('#' + curIdx + '-lens');
 
@@ -311,6 +312,7 @@ var Magnifier = function(evt, options) {
             }
         },
         onThumbLeave = function() {
+
             if (curData.status > 0) {
                 var handler = curData.onthumbleave;
 
@@ -335,6 +337,7 @@ var Magnifier = function(evt, options) {
             }
         },
         move = function() {
+
             if (status !== curData.status) {
                 onThumbEnter();
             }
@@ -423,6 +426,7 @@ var Magnifier = function(evt, options) {
     };
 
     this.set = function(options) {
+
         if (data[options.thumb.id] !== undefined) {
             curThumb = options.thumb;
             return false;
@@ -507,9 +511,11 @@ var Magnifier = function(evt, options) {
         };
 
         evt.attach('mouseover', thumb, function(e, src) {
+
             if (curData.status !== 0) {
                 onThumbLeave();
             }
+
 
             curIdx = src.id;
             curThumb = src;
@@ -559,7 +565,6 @@ var Magnifier = function(evt, options) {
     };
 
     evt.attach('mousemove', document, function(e) {
-
         pos.x = e.clientX;
         pos.y = e.clientY;
 
