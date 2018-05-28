@@ -2,25 +2,39 @@ import React from 'react';
 import { Header } from '../common/Header.jsx';
 import Breadcrumb from '../common/Breadcrumb.jsx';
 import './scss/ProductDetails.scss';
-
-
+import '../../assets/css/animate.min.css';
+import Swiper from 'swiper';
 
 class Chooseamount extends React.Component{
     constructor(){
         super()
         this.state={
-            inputVal:1
+            inputVal:1,
+            ReduceisDisable:true,
+            AddisDisable:false
         }
     }
 
 
     _addNumber(){
-        console.log()
+        
        this.setState({
-           inputVal:++this.state.inputVal
+           inputVal:++this.state.inputVal,
+           ReduceisDisable:this.state.inputVal>1?false:true
        })
+       
      }
    
+    _reduceNumber(){
+        if(this.state.inputVal>1){
+            this.setState({
+                inputVal:--this.state.inputVal,
+                ReduceisDisable:this.state.inputVal<=1?true:false
+            })
+        }
+        
+    }
+
      _handleChange(e){
        this.setState({
            inputVal:e.target.value
@@ -32,8 +46,8 @@ class Chooseamount extends React.Component{
             <div className="Chooseamount clearfix">
                 <input type="text" onChange={this._handleChange.bind(this)} value={this.state.inputVal} />
                 <p>
-                    <span onClick={this._addNumber.bind(this)}>+</span>
-                    <span className="disabled" disabled="disabled">-</span>
+                    <span className={this.state.AddisDisable?"disabled":''} onClick={this._addNumber.bind(this)}>+</span>
+                    <span className={this.state.ReduceisDisable?"disabled":''} onClick={this._reduceNumber.bind(this)}>-</span>
                 </p>
             
             </div>
@@ -59,6 +73,11 @@ class ProductDetails extends React.Component {
             largeWrapper: 'preview',
             zoomable:true
         });
+
+        this.mySwiper = new Swiper('.swiper-container',{
+            
+        })
+    
   }
 
   
@@ -78,6 +97,19 @@ class ProductDetails extends React.Component {
                                     <img id="thumb" src="../../assets/imageOther/banner1.png" />
                                 </a>
                                 <div className="magnifier-preview" id="preview"></div>
+                                <div className="SwiperBox clearfix">
+                                    <span>上</span>
+                                    <div className="swiper-container">
+                                        <ul className="swiper-wrapper clearfix">
+                                            <li className="swiper-slide"><img src="../../assets/imageOther/banner1.png" alt=""/>
+                                            <img src="../../assets/imageOther/banner1.png" alt=""/><img src="../../assets/imageOther/banner1.png" alt=""/><img src="../../assets/imageOther/banner1.png" alt=""/><img src="../../assets/imageOther/banner1.png" alt=""/></li>
+                                            <li className="swiper-slide"><img src="../../assets/imageOther/banner2.png" alt=""/><img src="../../assets/imageOther/banner2.png" alt=""/><img src="../../assets/imageOther/banner2.png" alt=""/><img src="../../assets/imageOther/banner2.png" alt=""/></li>
+                                            
+                                        </ul> 
+                                    </div>
+                                    <span>下</span>
+                                </div>
+                                
                             </div>
                             <div className="addCar">
                                 <h2>
@@ -114,7 +146,11 @@ class ProductDetails extends React.Component {
                     </div>
                     <div className="right">
                         <div className="store">
-                            <a><i></i><img src="../../assets/imageOther/banner1.png" alt=""/></a>
+                            <a><i></i><img src="../../assets/imageOther/banner1.png" alt=""/>
+                            <ul className="animated bounce">
+                               <li className="clearfix"><span>主营：</span><p>主营西门子、飞利浦等知名品牌的两行多余…</p> </li>
+                               <li className="clearfix"><span>地址：</span><p>位于北京顺义区天竺泰达技园7号楼x号</p> </li> 
+                            </ul></a>
                             <p>北京惠安达医疗设备责任有限公司</p>
                             <span>收藏店铺</span>
                         </div>

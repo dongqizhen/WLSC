@@ -2,7 +2,7 @@
  * @Author: mikey.dongqizhen
  * @Date: 2018-04-17 16:43:52
  * @Last Modified by: mikey.dongqizhen
- * @Last Modified time: 2018-05-24 09:27:27
+ * @Last Modified time: 2018-05-25 18:01:19
  */
 const webpack = require("webpack");
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -133,7 +133,7 @@ module.exports = {
         }]
     },
     plugins: [
-        new CleanWebpackPlugin('build/*.*', {
+        new CleanWebpackPlugin(['build/*.*', 'build/**/*.*'], {
             // Absolute path to your webpack root folder (paths appended to this) Default:
             // root of your package
             root: __dirname,
@@ -146,7 +146,7 @@ module.exports = {
             dry: false,
 
             // If true, remove files on recompile. Default: false
-            watch: true,
+            watch: false,
 
             // Instead of removing whole path recursively, remove all path's content with
             // exclusion of provided immediate children. Good for not removing shared files

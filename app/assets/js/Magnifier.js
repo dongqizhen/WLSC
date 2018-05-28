@@ -187,14 +187,8 @@ var Magnifier = function(evt, options) {
                 t = 0,
                 l = 0;
 
-            inBounds = (
-                    xPos <= 0 ||
-                    yPos <= 0 ||
-                    xPos >= curData.w ||
-                    yPos >= curData.h
-                ) ?
-                false :
-                true;
+
+            inBounds = (xPos < 0 || yPos < 0 || xPos > curData.w || yPos > curData.h) ? false : true;
 
             l = xPos - (curData.lensW / 2);
             t = yPos - (curData.lensH / 2);
@@ -458,7 +452,8 @@ var Magnifier = function(evt, options) {
             curData.onthumbmove,
             onzoom = (options.onzoom !== undefined) ?
             options.onzoom :
-            curData.onzoom;
+            curData.onzoom,
+            thumb;
 
         if (options.large === undefined) {
             largeUrl = (options.thumb.getAttribute('data-large-img-url') !== null) ?
@@ -490,7 +485,7 @@ var Magnifier = function(evt, options) {
         }
 
         createLens(thumb, idx);
-
+        setThumbData(thumb, curData);
         data[idx] = {
             zoom: zoom,
             zoomMin: zoomMin,
@@ -509,12 +504,16 @@ var Magnifier = function(evt, options) {
             onthumbleave: onthumbleave,
             onthumbmove: onthumbmove
         };
+        var thumbParent = thumb.parentNode;
 
-        evt.attach('mouseover', thumb, function(e, src) {
+        evt.attach('mouseenter', thumb, function(e, src) {
 
-            if (curData.status !== 0) {
+            isOverThumb = 1;
+            inBounds = true;
+            //console.log(curData.status)
+            /* if (curData.status !== 0) {
                 onThumbLeave();
-            }
+            } */
 
 
             curIdx = src.id;
@@ -547,7 +546,15 @@ var Magnifier = function(evt, options) {
             isOverThumb = 1;
         });
 
+        evt.attach('mouseleave', thumbParent, function() {
+            console.log("mouseleave", isOverThumb)
+            onThumbLeave();
+
+            isOverThumb = 0;
+        })
+
         evt.attach('load', thumbObj, function() {
+
             data[idx].status = 1;
 
             setThumbData(thumb, data[idx]);
@@ -570,15 +577,17 @@ var Magnifier = function(evt, options) {
 
         getMousePos();
 
+
         if (inBounds === true) {
             move();
-        } else {
-            if (isOverThumb !== 0) {
-                onThumbLeave();
-            }
-
-            isOverThumb = 0;
         }
+        /* else {
+                   if (isOverThumb !== 0) {
+                       onThumbLeave();
+                   }
+
+                   isOverThumb = 0;
+               } */
     }, false);
 
     evt.attach('scroll', window, function() {

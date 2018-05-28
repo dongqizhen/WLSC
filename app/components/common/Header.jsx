@@ -129,7 +129,7 @@ class BannerHideContainer extends React.Component{
 
         return (
             <div className="bannerHeader">
-                <span>全部商品分类</span>
+                <span><i></i>全部商品分类</span>
                 <ul className="bannerNav"  style={{display:this.props.headerStyle?"block":"none"}}>
                     {elementArr}
                 </ul>
