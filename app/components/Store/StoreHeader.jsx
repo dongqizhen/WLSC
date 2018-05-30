@@ -10,7 +10,6 @@ class StoreHeader extends React.Component {
 
 
   componentDidMount() {
-
   }
 
   render() {
