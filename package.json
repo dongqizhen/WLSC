@@ -16,9 +16,11 @@
     "directories": {
         "test": "test"
     },
-
-    "lint": "eslint --ext .js --ext .jsx --ext .vue src/",
-    "lint-fix": "eslint --fix --ext .js --ext .jsx --ext .vue src/",
+    "pre-commit": [
+        "lint"
+    ],
+    "lint": "eslint --ext .js --ext .jsx --ext .vue app/",
+    "lint-fix": "eslint --fix --ext .js --ext .jsx --ext .vue app/",
     "dependencies": {
         "axios": "^0.18.0",
         "babel-polyfill": "^6.26.0",
