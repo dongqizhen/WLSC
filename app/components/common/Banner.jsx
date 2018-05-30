@@ -2,7 +2,7 @@ import React from 'react';
 import './scss/Banner.scss';
 import Swiper from 'swiper';
 import indexActions from '../../actions/indexActions.jsx';
-import indexStores from '../../stores/indexStores.jsx';
+import indexStores from 'stores/indexStores';
 import dispatchs from '../../dispatchs/Dispatch.jsx';
 
 class BannerHideContainer extends React.Component {

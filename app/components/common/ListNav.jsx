@@ -46,7 +46,7 @@ export class ListNav extends React.Component {
                 {val.name}
                 <i />
                 <strong />
-              </li>))
+                                                  </li>))
             }
         </ul>
         {this.props.children}

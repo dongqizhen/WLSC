@@ -50,7 +50,7 @@ export default class Filter extends React.Component {
                             this.state.lists.map((value, index, array) => (<li key={value.id} className={this.state.addClass == value.id ? 'active' : ''} onClick={() => this.handleActive(value.id)}><img src={this.state.addClass == value.id ? value.activeImage : value.image} alt="" />
                               <div className="sortName">{value.name}</div>
                               <div className="triangle" />
-                                                                           </li>))
+                            </li>))
                         }
             </ul>
           </div>

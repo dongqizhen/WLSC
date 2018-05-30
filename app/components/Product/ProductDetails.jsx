@@ -114,10 +114,10 @@ class ProductDetails extends React.Component {
                       </li>
                       <li className="swiper-slide"><img src="../../assets/imageOther/banner1.png" alt="" />
                       </li><li className="swiper-slide"><img src="../../assets/imageOther/banner1.png" alt="" />
-                           </li><li className="swiper-slide"><img src="../../assets/imageOther/banner1.png" alt="" />
                       </li><li className="swiper-slide"><img src="../../assets/imageOther/banner1.png" alt="" />
-                                </li><li className="swiper-slide"><img src="../../assets/imageOther/banner1.png" alt="" />
-                           </li>
+                           </li><li className="swiper-slide"><img src="../../assets/imageOther/banner1.png" alt="" />
+                           </li><li className="swiper-slide"><img src="../../assets/imageOther/banner1.png" alt="" />
+                                     </li>
                     </ul>
                   </div>
                   <span onClick={this.swiperNext.bind(this)}>下</span>

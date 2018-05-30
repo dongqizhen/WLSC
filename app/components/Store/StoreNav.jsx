@@ -53,7 +53,7 @@ class StoreNav extends React.Component {
                     {
                       i == 0 ? val += '（99）' : val
                     }
-                  </span><i />
+                                                                                                                     </span><i />
                   </li>
                   ))
               }

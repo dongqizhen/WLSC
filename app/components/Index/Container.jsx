@@ -54,7 +54,7 @@ export default class Container extends React.Component {
                                 //   {console.log(item)}
                                    (<li key={`${Date.now()}key${item.id}`} className="left">
                                      <ListItem itemObj={item} />
-                                    </li>))
+                                   </li>))
                           }
             </ul>
             <div className="shop">

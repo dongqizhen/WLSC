@@ -44,12 +44,12 @@ module.exports = {
     devtool: env ? false : 'cheap-module-eval-source-map',
     devServer: {
         publicPath: '/',
-        contentBase: BUILD_PATH,
-        historyApiFallback: true,
-        hot: true,
+        contentBase: BUILD_PATH, //本地服务器所加载的页面所在的目录
+        historyApiFallback: true, //不跳转
+        hot: true, //模块热更新
         open: true,
-        inline: true,
-        port: 8080,
+        inline: true, //实时刷新
+        port: 8080, //设置端口号
         host: 'localhost',
         openPage: '',
         proxy: {},
@@ -161,7 +161,7 @@ module.exports = {
 
             {
                 test: /\.tsx?$/, // 用babel编译jsx和es6
-                include: [path.resolve(__dirname, 'src')], // 指定检查的目录
+                include: [path.resolve(__dirname, 'app')], // 指定检查的目录
                 exclude: /node_modules/,
                 use: [{
                         loader: 'awesome-typescript-loader',
@@ -256,9 +256,9 @@ module.exports = {
         }),
         new webpack.BannerPlugin('版权所有，翻版必究'),
         new webpack.HashedModuleIdsPlugin(), //vendor 的 hash 不改变
-        new AddAssetHtmlPlugin({
+        /* new AddAssetHtmlPlugin({
             filepath: path.resolve(__dirname, 'build/vendor/*.dll.js')
-        }),
+        }), */
         /* new ExtractTextPlugin({
             // 指定css文件名 打包成一个css
             filename: 'css/[name].css',
@@ -281,11 +281,11 @@ module.exports = {
             checkSyntacticErrors: true,
             tsconfig: path.resolve(__dirname, 'tsconfig.json'),
             tslint: path.resolve(__dirname, 'tslint.json'),
-            watch: ['./src/**/*.tsx'],
+            watch: ['./app/**/*.tsx', './app/*.tsx'],
             ignoreLints: ['no-console', 'object-literal-sort-keys', 'quotemark']
         }),
-        new webpack.NamedModulesPlugin(),
-        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NamedModulesPlugin(), //当启用HMR时，该插件将导致模块的相对路径显示
+        new webpack.HotModuleReplacementPlugin(), //模块热加载
         new webpack.WatchIgnorePlugin([/\.js$/, /\.d\.ts$/]), // 忽略掉 d.ts 文件，避免因为编译生成 d.ts 文件导致又重新检查。
         new webpack.optimize.ModuleConcatenationPlugin(),
         // 3.0新功能 范围提升 （Scope Hoisting ）,作用域提升，这是在webpack3中所提出来的。它会使代码体积更小，因为函数申明语句会产生大量代码.
@@ -297,14 +297,21 @@ module.exports = {
     ],
 
     resolve: {
-        modules: ['node_modules', path.join(__dirname, './node_modules')],
-        extensions: ['.js', '.jsx', '.ts', '.tsx', '.less', '.scss', '.json'],
-        alias: {
-            components: path.resolve(APP_PATH, './components')
+        modules: ['node_modules', path.join(__dirname, './node_modules')], //告诉webpack解析模块时应该搜索哪些目录
+        extensions: ['.js', '.jsx', '.ts', '.tsx', '.less', '.scss', '.json'], //自动解析某些扩展
+        alias: { //创建别名可以更轻松地导入需要的某些模块
+            common: path.resolve(APP_PATH, './components/common/'),
+            Index: path.resolve(APP_PATH, './components/Index/'),
+            Product: path.resolve(APP_PATH, './components/Product/'),
+            Search: path.resolve(APP_PATH, './components/Search/'),
+            Store: path.resolve(APP_PATH, './components/Store/'),
+            dispatchs: path.resolve(APP_PATH, './dispatchs/'),
+            stores: path.resolve(APP_PATH, './stores/'),
+            actions: path.resolve(APP_PATH, './actions/'),
         }
     },
 
-    externals: {
+    externals: { //阻止捆绑某些导入的包，而是在运行时检索这些外部依赖关系
         zepto: 'Zepto'
     },
     watch: !env,
@@ -315,42 +322,42 @@ module.exports = {
     }
 };
 
-if (env) {
-    module.exports.optimization = {
-        minimizer: [
-                new UglifyJsPlugin({
-                    cache: true,
-                    parallel: true,
-                    uglifyOptions: {
-                        compress: true,
-                        ecma: 6,
-                        mangle: true
-                    },
-                    sourceMap: true
-                })
-            ]
-            // 这个变化还是很大的，之前的webpack版本用的都是commonchunkplugin，但是webpack4开始使用common-chunk-and-vendor-chunk 配置如下:
-            /* splitChunks: {
-              cacheGroups: {
-                commons: {
-                  chunks: 'initial',
-                  minChunks: 2,
-                  maxInitialRequests: 5, // The default limit is too small to showcase the effect
-                  minSize: 0 // This is example is too small to create commons chunks
-                },
-                vendor: {
-                  test: /node_modules/,
-                  chunks: 'initial',
-                  name: 'vendor',
-                  priority: 10,
-                  enforce: true
-                }
-              }
-            } */
-    };
+// if (env) {
+//     module.exports.optimization = {
+//         minimizer: [
+//                 new UglifyJsPlugin({
+//                     cache: true,
+//                     parallel: true,
+//                     uglifyOptions: {
+//                         compress: true,
+//                         ecma: 6,
+//                         mangle: true
+//                     },
+//                     sourceMap: true
+//                 })
+//             ]
+//             // 这个变化还是很大的，之前的webpack版本用的都是commonchunkplugin，但是webpack4开始使用common-chunk-and-vendor-chunk 配置如下:
+//             /* splitChunks: {
+//               cacheGroups: {
+//                 commons: {
+//                   chunks: 'initial',
+//                   minChunks: 2,
+//                   maxInitialRequests: 5, // The default limit is too small to showcase the effect
+//                   minSize: 0 // This is example is too small to create commons chunks
+//                 },
+//                 vendor: {
+//                   test: /node_modules/,
+//                   chunks: 'initial',
+//                   name: 'vendor',
+//                   priority: 10,
+//                   enforce: true
+//                 }
+//               }
+//             } */
+//     };
 
-    module.exports.plugins = (module.exports.plugins || []).concat([
-        new OptimizeCssAssetsPlugin({})
-        // new CleanPlugin([BUILD_PATH])
-    ]);
-}
+//     module.exports.plugins = (module.exports.plugins || []).concat([
+//         new OptimizeCssAssetsPlugin({})
+//         // new CleanPlugin([BUILD_PATH])
+//     ]);
+// }

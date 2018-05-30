@@ -17,7 +17,7 @@
         "test": "test"
     },
     "pre-commit": [
-        "lint"
+        "start"
     ],
     "lint": "eslint --ext .js --ext .jsx --ext .vue app/",
     "lint-fix": "eslint --fix --ext .js --ext .jsx --ext .vue app/",

@@ -54,7 +54,7 @@ export class PageAndList extends React.Component {
           {
                   this.state.data.map((item, i) => (<li key={`${Date.now()}key${item.id}`} className="left">
                     <ListItem itemObj={item} />
-                                                    </li>))
+                  </li>))
               }
         </ul>
         <ReactPaginate

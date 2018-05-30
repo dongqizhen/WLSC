@@ -113,7 +113,7 @@ class Bannerheader extends React.Component {
                                   <span key={key}> {value}</span>)
                             }
 
-                                            </div>
+          </div>
 
           {
                         this.state.stores.currentIndex == n && this.state.stores.BannerHideBoxIsShow && <BannerHideContainer />
