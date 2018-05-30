@@ -63,6 +63,14 @@ class ProductDetails extends React.Component {
     };
   }
 
+  swiperNext(){
+    console.log(this.mySwiper.activeIndex);
+    this.mySwiper.swipeNext()
+  }
+
+  swiperPrev(){
+    this.mySwiper.swipePrev()
+  }
 
   componentDidMount() {
    const evt = new Event(),
@@ -75,12 +83,14 @@ class ProductDetails extends React.Component {
         });
 
         this.mySwiper = new Swiper('.swiper-container',{
-            
+            slidesPerView : 5
         })
     
   }
 
-  
+  componentWillUnmount(){
+      this.mySwiper.destroy()
+  }
 
   render() {
    //let {inputVal} = this.state;
@@ -98,16 +108,23 @@ class ProductDetails extends React.Component {
                                 </a>
                                 <div className="magnifier-preview" id="preview"></div>
                                 <div className="SwiperBox clearfix">
-                                    <span>上</span>
+                                    <span onClick={this.swiperPrev.bind(this)}>上</span>
                                     <div className="swiper-container">
                                         <ul className="swiper-wrapper clearfix">
+                                            <li className="swiper-slide"><img src="../../assets/imageOther/banner1.png" alt=""/></li>
                                             <li className="swiper-slide"><img src="../../assets/imageOther/banner1.png" alt=""/>
-                                            <img src="../../assets/imageOther/banner1.png" alt=""/><img src="../../assets/imageOther/banner1.png" alt=""/><img src="../../assets/imageOther/banner1.png" alt=""/><img src="../../assets/imageOther/banner1.png" alt=""/></li>
-                                            <li className="swiper-slide"><img src="../../assets/imageOther/banner2.png" alt=""/><img src="../../assets/imageOther/banner2.png" alt=""/><img src="../../assets/imageOther/banner2.png" alt=""/><img src="../../assets/imageOther/banner2.png" alt=""/></li>
-                                            
+                                            </li>
+                                            <li className="swiper-slide"><img src="../../assets/imageOther/banner1.png" alt=""/>
+                                            </li>
+                                            <li className="swiper-slide"><img src="../../assets/imageOther/banner1.png" alt=""/>
+                                        </li><li className="swiper-slide"><img src="../../assets/imageOther/banner1.png" alt=""/>
+                                        </li><li className="swiper-slide"><img src="../../assets/imageOther/banner1.png" alt=""/>
+                                        </li><li className="swiper-slide"><img src="../../assets/imageOther/banner1.png" alt=""/>
+                                        </li><li className="swiper-slide"><img src="../../assets/imageOther/banner1.png" alt=""/>
+                                        </li>
                                         </ul> 
                                     </div>
-                                    <span>下</span>
+                                    <span onClick={this.swiperNext.bind(this)}>下</span>
                                 </div>
                                 
                             </div>

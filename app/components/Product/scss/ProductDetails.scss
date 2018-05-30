@@ -39,6 +39,7 @@
                         float: left;
                         width: 20px;
                         height: 45px;
+                        cursor: pointer;
                     }
                     .swiper-container {
                         height: 45px;
@@ -47,13 +48,14 @@
                         ul {
                             li {
                                 height: 45px;
-                                width: 100%;
+                                //width: 100%;
+                                width: 45px;
                                 float: left;
                                 img {
                                     height: 100%;
                                     width: 45px;
                                     cursor: pointer;
-                                    margin-right: 20px;
+                                    // margin-right: 20px;
                                 }
                             }
                         }

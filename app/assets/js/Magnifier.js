@@ -506,15 +506,15 @@ var Magnifier = function(evt, options) {
         };
         var thumbParent = thumb.parentNode;
 
-        evt.attach('mouseenter', thumb, function(e, src) {
+        evt.attach('mouseenter', thumbParent, function(e, src) {
 
             isOverThumb = 1;
             inBounds = true;
-            //console.log(curData.status)
+
             /* if (curData.status !== 0) {
                 onThumbLeave();
             } */
-
+            src = src.childNodes[0]
 
             curIdx = src.id;
             curThumb = src;
@@ -547,7 +547,7 @@ var Magnifier = function(evt, options) {
         });
 
         evt.attach('mouseleave', thumbParent, function() {
-            console.log("mouseleave", isOverThumb)
+
             onThumbLeave();
 
             isOverThumb = 0;
